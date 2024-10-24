@@ -8,9 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        raleway: ['Raleway', 'sans-serif'],
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to bottom right, #111e21, #0b242b)',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#01e477"
       },
     },
   },
