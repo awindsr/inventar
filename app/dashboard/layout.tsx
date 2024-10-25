@@ -1,7 +1,9 @@
 "use client"
+
 import { useEffect } from 'react';
-import { redirect, useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import Navbar from "@/components/navbar/Navbar";
 
 export default function DashboardLayout({
   children,
@@ -9,19 +11,27 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   useEffect(() => {
     if (status === "unauthenticated") {
       redirect('/');
-    } else if (status === "authenticated") {
-      router.push("/dashboard");
     }
-  }, [status, router]);
+  }, [status]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-custom-gradient">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
   }
 
-  return <>{children}</>;
+  return (
+    <div className="min-h-screen bg-custom-gradient">
+      <Navbar />
+      <main className="p-8">
+        {children}
+      </main>
+    </div>
+  );
 }

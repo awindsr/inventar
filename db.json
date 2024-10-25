@@ -1,0 +1,504 @@
+{
+    "products": [
+      {
+        "name": "Product 1",
+        "marketPrice": 99.99,
+        "retailPrice": 89.99,
+        "stockAvailable": 50,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier A",
+        "productCode": "P001",
+        "category": "Electronics"
+      },
+      {
+        "name": "Product 2",
+        "marketPrice": 199.99,
+        "retailPrice": 179.99,
+        "stockAvailable": 30,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier B",
+        "productCode": "P002",
+        "category": "Home Appliances"
+      },
+      {
+        "name": "Product 3",
+        "marketPrice": 299.99,
+        "retailPrice": 249.99,
+        "stockAvailable": 20,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier C",
+        "productCode": "P003",
+        "category": "Furniture"
+      },
+      {
+        "name": "Product 4",
+        "marketPrice": 49.99,
+        "retailPrice": 39.99,
+        "stockAvailable": 100,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier D",
+        "productCode": "P004",
+        "category": "Clothing"
+      },
+      {
+        "name": "Product 5",
+        "marketPrice": 79.99,
+        "retailPrice": 69.99,
+        "stockAvailable": 75,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier E",
+        "productCode": "P005",
+        "category": "Footwear"
+      },
+      {
+        "name": "Product 6",
+        "marketPrice": 29.99,
+        "retailPrice": 24.99,
+        "stockAvailable": 150,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier F",
+        "productCode": "P006",
+        "category": "Toys"
+      },
+      {
+        "name": "Product 7",
+        "marketPrice": 14.99,
+        "retailPrice": 12.99,
+        "stockAvailable": 200,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier G",
+        "productCode": "P007",
+        "category": "Books"
+      },
+      {
+        "name": "Product 8",
+        "marketPrice": 59.99,
+        "retailPrice": 49.99,
+        "stockAvailable": 60,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier H",
+        "productCode": "P008",
+        "category": "Sports"
+      },
+      {
+        "name": "Product 9",
+        "marketPrice": 39.99,
+        "retailPrice": 34.99,
+        "stockAvailable": 80,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier I",
+        "productCode": "P009",
+        "category": "Beauty"
+      },
+      {
+        "name": "Product 10",
+        "marketPrice": 19.99,
+        "retailPrice": 17.99,
+        "stockAvailable": 120,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier J",
+        "productCode": "P010",
+        "category": "Health"
+      },
+      {
+        "name": "Product 11",
+        "marketPrice": 149.99,
+        "retailPrice": 129.99,
+        "stockAvailable": 45,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier A",
+        "productCode": "P011",
+        "category": "Electronics"
+      },
+      {
+        "name": "Product 12",
+        "marketPrice": 249.99,
+        "retailPrice": 219.99,
+        "stockAvailable": 35,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier B",
+        "productCode": "P012",
+        "category": "Home Appliances"
+      },
+      {
+        "name": "Product 13",
+        "marketPrice": 349.99,
+        "retailPrice": 299.99,
+        "stockAvailable": 15,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier C",
+        "productCode": "P013",
+        "category": "Furniture"
+      },
+      {
+        "name": "Product 14",
+        "marketPrice": 69.99,
+        "retailPrice": 59.99,
+        "stockAvailable": 90,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier D",
+        "productCode": "P014",
+        "category": "Clothing"
+      },
+      {
+        "name": "Product 15",
+        "marketPrice": 89.99,
+        "retailPrice": 79.99,
+        "stockAvailable": 70,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier E",
+        "productCode": "P015",
+        "category": "Footwear"
+      },
+      {
+        "name": "Product 16",
+        "marketPrice": 39.99,
+        "retailPrice": 34.99,
+        "stockAvailable": 140,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier F",
+        "productCode": "P016",
+        "category": "Toys"
+      },
+      {
+        "name": "Product 17",
+        "marketPrice": 19.99,
+        "retailPrice": 17.99,
+        "stockAvailable": 180,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier G",
+        "productCode": "P017",
+        "category": "Books"
+      },
+      {
+        "name": "Product 18",
+        "marketPrice": 69.99,
+        "retailPrice": 59.99,
+        "stockAvailable": 55,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier H",
+        "productCode": "P018",
+        "category": "Sports"
+      },
+      {
+        "name": "Product 19",
+        "marketPrice": 49.99,
+        "retailPrice": 44.99,
+        "stockAvailable": 85,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier I",
+        "productCode": "P019",
+        "category": "Beauty"
+      },
+      {
+        "name": "Product 20",
+        "marketPrice": 29.99,
+        "retailPrice": 24.99,
+        "stockAvailable": 110,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier J",
+        "productCode": "P020",
+        "category": "Health"
+      },
+      {
+        "name": "Product 21",
+        "marketPrice": 199.99,
+        "retailPrice": 179.99,
+        "stockAvailable": 40,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier A",
+        "productCode": "P021",
+        "category": "Electronics"
+      },
+      {
+        "name": "Product 22",
+        "marketPrice": 299.99,
+        "retailPrice": 249.99,
+        "stockAvailable": 25,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier B",
+        "productCode": "P022",
+        "category": "Home Appliances"
+      },
+      {
+        "name": "Product 23",
+        "marketPrice": 399.99,
+        "retailPrice": 349.99,
+        "stockAvailable": 10,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier C",
+        "productCode": "P023",
+        "category": "Furniture"
+      },
+      {
+        "name": "Product 24",
+        "marketPrice": 69.99,
+        "retailPrice": 59.99,
+        "stockAvailable": 95,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier D",
+        "productCode": "P024",
+        "category": "Clothing"
+      },
+      {
+        "name": "Product 25",
+        "marketPrice": 89.99,
+        "retailPrice": 79.99,
+        "stockAvailable": 65,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier E",
+        "productCode": "P025",
+        "category": "Footwear"
+      },
+      {
+        "name": "Product 26",
+        "marketPrice": 49.99,
+        "retailPrice": 44.99,
+        "stockAvailable": 130,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier F",
+        "productCode": "P026",
+        "category": "Toys"
+      },
+      {
+        "name": "Product 27",
+        "marketPrice": 24.99,
+        "retailPrice": 22.99,
+        "stockAvailable": 190,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier G",
+        "productCode": "P027",
+        "category": "Books"
+      },
+      {
+        "name": "Product 28",
+        "marketPrice": 79.99,
+        "retailPrice": 69.99,
+        "stockAvailable": 50,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier H",
+        "productCode": "P028",
+        "category": "Sports"
+      },
+      {
+        "name": "Product 29",
+        "marketPrice": 39.99,
+        "retailPrice": 34.99,
+        "stockAvailable": 80,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier I",
+        "productCode": "P029",
+        "category": "Beauty"
+      },
+      {
+        "name": "Product 30",
+        "marketPrice": 19.99,
+        "retailPrice": 17.99,
+        "stockAvailable": 120,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier J",
+        "productCode": "P030",
+        "category": "Health"
+      },
+      {
+        "name": "Product 31",
+        "marketPrice": 149.99,
+        "retailPrice": 129.99,
+        "stockAvailable": 45,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier A",
+        "productCode": "P031",
+        "category": "Electronics"
+      },
+      {
+        "name": "Product 32",
+        "marketPrice": 249.99,
+        "retailPrice": 219.99,
+        "stockAvailable": 35,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier B",
+        "productCode": "P032",
+        "category": "Home Appliances"
+      },
+      {
+        "name": "Product 33",
+        "marketPrice": 349.99,
+        "retailPrice": 299.99,
+        "stockAvailable": 15,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier C",
+        "productCode": "P033",
+        "category": "Furniture"
+      },
+      {
+        "name": "Product 34",
+        "marketPrice": 69.99,
+        "retailPrice": 59.99,
+        "stockAvailable": 90,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier D",
+        "productCode": "P034",
+        "category": "Clothing"
+      },
+      {
+        "name": "Product 35",
+        "marketPrice": 89.99,
+        "retailPrice": 79.99,
+        "stockAvailable": 70,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier E",
+        "productCode": "P035",
+        "category": "Footwear"
+      },
+      {
+        "name": "Product 36",
+        "marketPrice": 39.99,
+        "retailPrice": 34.99,
+        "stockAvailable": 140,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier F",
+        "productCode": "P036",
+        "category": "Toys"
+      },
+      {
+        "name": "Product 37",
+        "marketPrice": 19.99,
+        "retailPrice": 17.99,
+        "stockAvailable": 180,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier G",
+        "productCode": "P037",
+        "category": "Books"
+      },
+      {
+        "name": "Product 38",
+        "marketPrice": 69.99,
+        "retailPrice": 59.99,
+        "stockAvailable": 55,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier H",
+        "productCode": "P038",
+        "category": "Sports"
+      },
+      {
+        "name": "Product 39",
+        "marketPrice": 49.99,
+        "retailPrice": 44.99,
+        "stockAvailable": 85,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier I",
+        "productCode": "P039",
+        "category": "Beauty"
+      },
+      {
+        "name": "Product 40",
+        "marketPrice": 29.99,
+        "retailPrice": 24.99,
+        "stockAvailable": 110,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier J",
+        "productCode": "P040",
+        "category": "Health"
+      },
+      {
+        "name": "Product 41",
+        "marketPrice": 199.99,
+        "retailPrice": 179.99,
+        "stockAvailable": 40,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier A",
+        "productCode": "P041",
+        "category": "Electronics"
+      },
+      {
+        "name": "Product 42",
+        "marketPrice": 299.99,
+        "retailPrice": 249.99,
+        "stockAvailable": 25,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier B",
+        "productCode": "P042",
+        "category": "Home Appliances"
+      },
+      {
+        "name": "Product 43",
+        "marketPrice": 399.99,
+        "retailPrice": 349.99,
+        "stockAvailable": 10,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier C",
+        "productCode": "P043",
+        "category": "Furniture"
+      },
+      {
+        "name": "Product 44",
+        "marketPrice": 69.99,
+        "retailPrice": 59.99,
+        "stockAvailable": 95,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier D",
+        "productCode": "P044",
+        "category": "Clothing"
+      },
+      {
+        "name": "Product 45",
+        "marketPrice": 89.99,
+        "retailPrice": 79.99,
+        "stockAvailable": 65,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier E",
+        "productCode": "P045",
+        "category": "Footwear"
+      },
+      {
+        "name": "Product 46",
+        "marketPrice": 49.99,
+        "retailPrice": 44.99,
+        "stockAvailable": 130,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier F",
+        "productCode": "P046",
+        "category": "Toys"
+      },
+      {
+        "name": "Product 47",
+        "marketPrice": 24.99,
+        "retailPrice": 22.99,
+        "stockAvailable": 190,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier G",
+        "productCode": "P047",
+        "category": "Books"
+      },
+      {
+        "name": "Product 48",
+        "marketPrice": 79.99,
+        "retailPrice": 69.99,
+        "stockAvailable": 50,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier H",
+        "productCode": "P048",
+        "category": "Sports"
+      },
+      {
+        "name": "Product 49",
+        "marketPrice": 39.99,
+        "retailPrice": 34.99,
+        "stockAvailable": 80,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier I",
+        "productCode": "P049",
+        "category": "Beauty"
+      },
+      {
+        "name": "Product 50",
+        "marketPrice": 19.99,
+        "retailPrice": 17.99,
+        "stockAvailable": 120,
+        "image": "https://via.placeholder.com/150",
+        "supplierName": "Supplier J",
+        "productCode": "P050",
+        "category": "Health"
+      }
+    ]
+  }
