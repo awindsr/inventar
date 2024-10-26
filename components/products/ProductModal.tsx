@@ -139,6 +139,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
             {isEditing ? (
               <>
                 <button
+                type="button"
                   onClick={() => setIsEditing(false)}
                   className="text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all px-2 py-1 rounded-lg">
                   Cancel Edit
@@ -164,8 +165,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
         {isEditing ? (
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-white">Product Name</label>
+              <label htmlFor="productName" className="block text-white">Product Name</label>
               <input
+                id="productName"
                 type="text"
                 name="name"
                 value={editedProduct.name}
@@ -174,8 +176,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Market Price</label>
+              <label htmlFor="marketPrice" className="block text-white">Market Price</label>
               <input
+                id="marketPrice"
                 type="number"
                 name="marketPrice"
                 value={editedProduct.market_price} // Bind to editedProduct state
@@ -184,37 +187,40 @@ const ProductModal: React.FC<ProductModalProps> = ({
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Retail Price</label>
+              <label htmlFor="retailPrice" className="block text-white">Retail Price</label>
               <input
+                id="retailPrice"
                 type="number"
                 name="retailPrice"
-                value={editedProduct.retail_price}
-                onChange={handleChange}
+                value={editedProduct.retail_price} // Bind to editedProduct state
+                onChange={handleChange} // Update state on change
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Stock Available</label>
+              <label htmlFor="stockAvailable" className="block text-white">Stock Available</label>
               <input
+                id="stockAvailable"
                 type="number"
                 name="stockAvailable"
-                value={editedProduct.stockAvailable}
-                onChange={handleChange}
+                value={editedProduct.stockAvailable} // Bind to editedProduct state
+                onChange={handleChange} // Update state on change
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Supplier Name</label>
+              <label htmlFor="supplierName" className="block text-white">Supplier Name</label>
               <input
+                id="supplierName"
                 type="text"
                 name="supplierName"
-                value={editedProduct.supplierName}
-                onChange={handleChange}
+                value={editedProduct.supplierName} // Bind to editedProduct state
+                onChange={handleChange} // Update state on change
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Category</label>
+              <label htmlFor="category" className="block text-white">Category</label>
               <input
                 type="text"
                 name="category"
@@ -224,7 +230,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Subcategory</label>
+              <label htmlFor="subCategory" className="block text-white">Subcategory</label>
               <input
                 type="text"
                 name="subCategory"
