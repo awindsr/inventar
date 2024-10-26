@@ -70,8 +70,8 @@ export default function ProductsList() {
       (filters.selectedStock === 'In Stock' && product.stockAvailable > 0) || 
       (filters.selectedStock === 'High Stock' && product.stockAvailable > 100);
     const matchesCategory = filters.selectedCategory === 'All Products' || product.category === filters.selectedCategory;
-    const matchesMinPrice = filters.minPrice === '' || product.retailPrice >= parseFloat(filters.minPrice);
-    const matchesMaxPrice = filters.maxPrice === '' || product.retailPrice <= parseFloat(filters.maxPrice);
+    const matchesMinPrice = filters.minPrice === '' || product.retail_price >= parseFloat(filters.minPrice);
+    const matchesMaxPrice = filters.maxPrice === '' || product.retail_price <= parseFloat(filters.maxPrice);
 
     return matchesSearch && matchesStatus && matchesType && matchesStock && matchesCategory && matchesMinPrice && matchesMaxPrice;
   });

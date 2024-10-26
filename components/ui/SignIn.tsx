@@ -9,6 +9,7 @@ export function SignIn() {
       <div className="p-8 bg-white shadow-md rounded-lg">
         <h2 className="mb-6 text-2xl font-semibold text-center">Sign In</h2>
         <button
+        type="button"
           onClick={() => signIn("google")}
           className="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"
         >

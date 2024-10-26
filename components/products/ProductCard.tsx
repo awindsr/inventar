@@ -1,17 +1,10 @@
 // components/products/ProductCard.tsx
-import React from "react";
+import type React from "react";
+import type { Product } from '../../types/productTypes';
+
 
 interface ProductCardProps {
-  product: {
-    name: string;
-    marketPrice: number;
-    retailPrice: number;
-    stockAvailable: number;
-    image: string;
-    supplierName: string;
-    productCode: string;
-    category: string;
-  };
+  product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {

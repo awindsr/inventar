@@ -178,7 +178,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <input
                 type="number"
                 name="marketPrice"
-                value={editedProduct.marketPrice} // Bind to editedProduct state
+                value={editedProduct.market_price} // Bind to editedProduct state
                 onChange={handleChange} // Update state on change
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
@@ -188,7 +188,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <input
                 type="number"
                 name="retailPrice"
-                value={editedProduct.retailPrice}
+                value={editedProduct.retail_price}
                 onChange={handleChange}
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />

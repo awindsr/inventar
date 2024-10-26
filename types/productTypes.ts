@@ -27,9 +27,10 @@ export interface Color {
   }
   
   export interface Product {
+    id: number;
     name: string;
-    marketPrice: number;
-    retailPrice: number;
+    market_price: number;
+    retail_price: number;
     stockAvailable: number;
     supplierName: string;
     productCode: string;
