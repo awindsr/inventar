@@ -5,15 +5,91 @@ import ProductModal from './ProductModal';
 import ProductsNavbar from './ProductsNavbar'; // Import ProductsNavbar
 import ProductFilter from './ProductsFilter'; // Import ProductFilter
 
+// Define the Product interface
+interface Color {
+  name: string;
+  hex: string;
+  inStock: boolean;
+}
+
+interface Feature {
+  name: string;
+  description: string;
+}
+
+interface Dimensions {
+  width: number;
+  height: number;
+  depth: number;
+  unit: string;
+}
+
+interface Variant {
+  id: string;
+  color?: string;
+  storage?: string;
+  price: number;
+  stockAvailable: number;
+}
+
+interface Product {
+  name: string;
+  marketPrice: number;
+  retailPrice: number;
+  stockAvailable: number;
+  images: string[];
+  supplierName: string;
+  productCode: string;
+  category: string;
+  subCategory: string;
+  specifications: {
+    brand?: string;
+    model?: string;
+    storage?: string;
+    ram?: string;
+    screenSize?: string;
+    colors: Color[];
+    warranty: string;
+    powerConsumption?: string;
+    dimensions?: Dimensions;
+    features?: Feature[];
+  };
+  details: {
+    description: string;
+    highlights: string[];
+    inBox: string[];
+  };
+  variants: Variant[];
+  reviews: {
+    averageRating: number;
+    totalReviews: number;
+  };
+  metadata: {
+    dateAdded: string;
+    lastUpdated: string;
+    tags: string[];
+  };
+}
+
+// Define the Filters interface
+interface Filters {
+  status: string;
+  productTypes: string[];
+  minPrice: string;
+  maxPrice: string;
+  selectedStock: string;
+  selectedCategory: string;
+}
+
 export default function ProductsList() {
-  const [products, setProducts] = useState<any[]>([]); // State to hold products
+  const [products, setProducts] = useState<Product[]>([]); // State to hold products
   const [loading, setLoading] = useState(true); // State to manage loading state
   const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const [selectedProduct, setSelectedProduct] = useState<any>(null); // State for selected product
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // State for selected product
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const productsPerPage = 10; // Number of products to display per page
 
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filters>({
     status: 'All',
     productTypes: [],
     minPrice: '',
@@ -46,8 +122,11 @@ export default function ProductsList() {
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = filters.status === 'All' || product.status === filters.status;
-    const matchesType = filters.productTypes.length === 0 || filters.productTypes.includes(product.type);
-    const matchesStock = filters.selectedStock === 'All Stocks' || (filters.selectedStock === 'Low Stock' && product.stockAvailable < 20) || (filters.selectedStock === 'In Stock' && product.stockAvailable > 0) || (filters.selectedStock === 'High Stock' && product.stockAvailable > 100);
+    const matchesType = filters.productTypes.length === 0 || filters.productTypes.includes(product.subCategory);
+    const matchesStock = filters.selectedStock === 'All Stocks' || 
+      (filters.selectedStock === 'Low Stock' && product.stockAvailable < 20) || 
+      (filters.selectedStock === 'In Stock' && product.stockAvailable > 0) || 
+      (filters.selectedStock === 'High Stock' && product.stockAvailable > 100);
     const matchesCategory = filters.selectedCategory === 'All Products' || product.category === filters.selectedCategory;
     const matchesMinPrice = filters.minPrice === '' || product.retailPrice >= parseFloat(filters.minPrice);
     const matchesMaxPrice = filters.maxPrice === '' || product.retailPrice <= parseFloat(filters.maxPrice);
@@ -68,12 +147,12 @@ export default function ProductsList() {
   };
 
   // Handle product click to open modal
-  const handleProductClick = (product: any) => {
+  const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
   };
 
   // Handle product update
-  const handleUpdateProduct = (updatedProduct: any) => {
+  const handleUpdateProduct = (updatedProduct: Product) => {
     setProducts(prevProducts => 
       prevProducts.map(product => 
         product.productCode === updatedProduct.productCode ? updatedProduct : product
@@ -81,7 +160,7 @@ export default function ProductsList() {
     );
   };
 
-  const handleFilterChange = (newFilters: any) => {
+  const handleFilterChange = (newFilters: Partial<Filters>) => {
     setFilters(prevFilters => ({ ...prevFilters, ...newFilters }));
   };
 

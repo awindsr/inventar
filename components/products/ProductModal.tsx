@@ -27,47 +27,49 @@ interface Variant {
   stockAvailable: number;
 }
 
-interface ProductModalProps {
-  product: {
-    name: string;
-    marketPrice: number;
-    retailPrice: number;
-    stockAvailable: number;
-    images: string[];
-    supplierName: string;
-    productCode: string;
-    category: string;
-    subCategory: string;
-    specifications: {
-      brand?: string;
-      model?: string;
-      storage?: string;
-      ram?: string;
-      screenSize?: string;
-      colors: Color[];
-      warranty: string;
-      powerConsumption?: string;
-      dimensions?: Dimensions;
-      features?: Feature[];
-    };
-    details: {
-      description: string;
-      highlights: string[];
-      inBox: string[];
-    };
-    variants: Variant[];
-    reviews: {
-      averageRating: number;
-      totalReviews: number;
-    };
-    metadata: {
-      dateAdded: string;
-      lastUpdated: string;
-      tags: string[];
-    };
+interface Product {
+  name: string;
+  marketPrice: number;
+  retailPrice: number;
+  stockAvailable: number;
+  images: string[];
+  supplierName: string;
+  productCode: string;
+  category: string;
+  subCategory: string;
+  specifications: {
+    brand?: string;
+    model?: string;
+    storage?: string;
+    ram?: string;
+    screenSize?: string;
+    colors: Color[];
+    warranty: string;
+    powerConsumption?: string;
+    dimensions?: Dimensions;
+    features?: Feature[];
   };
+  details: {
+    description: string;
+    highlights: string[];
+    inBox: string[];
+  };
+  variants: Variant[];
+  reviews: {
+    averageRating: number;
+    totalReviews: number;
+  };
+  metadata: {
+    dateAdded: string;
+    lastUpdated: string;
+    tags: string[];
+  };
+}
+
+interface ProductModalProps {
+  product: Product;
   onClose: () => void;
-  onUpdate: (updatedProduct: any) => void;
+  onUpdate: (updatedProduct: Product) => void; // Specify the type for updatedProduct
 }
 
 const ProductModal: React.FC<ProductModalProps> = ({
@@ -76,38 +78,27 @@ const ProductModal: React.FC<ProductModalProps> = ({
   onUpdate,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedProduct, setEditedProduct] = useState(product);
+  const [editedProduct, setEditedProduct] = useState<Product>(product); // Specify the type for editedProduct
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
   const [newImageUrl, setNewImageUrl] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setEditedProduct(prev => ({ ...prev, [name]: value }));
+    setEditedProduct((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await fetch(`http://localhost:3001/products/${product.productCode}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(editedProduct),
-      });
-      if (response.ok) {
-        onUpdate(editedProduct); // Call the update function passed from the parent
-        setIsEditing(false); // Close edit mode
-      }
-    } catch (error) {
-      console.error('Error updating product:', error);
-    }
+    onUpdate(editedProduct); // Pass the updated product
   };
 
   const addImage = () => {
     if (newImageUrl) {
-      setEditedProduct(prev => ({
+      setEditedProduct((prev) => ({
         ...prev,
         images: [...prev.images, newImageUrl],
       }));
@@ -116,7 +107,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
   };
 
   const deleteImage = (index: number) => {
-    setEditedProduct(prev => ({
+    setEditedProduct((prev) => ({
       ...prev,
       images: prev.images.filter((_, i) => i !== index),
     }));
@@ -125,7 +116,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const updateImage = (index: number) => {
     const updatedImages = [...editedProduct.images];
     updatedImages[index] = newImageUrl; // Update the image URL
-    setEditedProduct(prev => ({
+    setEditedProduct((prev) => ({
       ...prev,
       images: updatedImages,
     }));
@@ -358,7 +349,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 value={`${editedProduct.specifications.dimensions?.width || ''}, ${editedProduct.specifications.dimensions?.height || ''}, ${editedProduct.specifications.dimensions?.depth || ''}, ${editedProduct.specifications.dimensions?.unit || ''}`}
                 onChange={(e) => {
                   const [width, height, depth, unit] = e.target.value.split(', ');
-                  setEditedProduct(prev => ({
+                  setEditedProduct((prev) => ({
                     ...prev,
                     specifications: {
                       ...prev.specifications,
@@ -379,7 +370,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                     const [name, description] = f.split(': ');
                     return { name, description };
                   });
-                  setEditedProduct(prev => ({
+                  setEditedProduct((prev) => ({
                     ...prev,
                     specifications: {
                       ...prev.specifications,

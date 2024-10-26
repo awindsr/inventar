@@ -13,7 +13,6 @@ import {
 import NavButton from "../ui/NavButton";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function Navbar() {
