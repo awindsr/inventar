@@ -3,6 +3,7 @@ import type React from "react";
 import type { Product } from '../../types/productTypes';
 
 
+
 interface ProductCardProps {
   product: Product;
 }
@@ -15,12 +16,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   } else if (product.stockAvailable > 100) {
     stockStatus = "High Stock";
   }
+  const defaultImage = '/image-placeholder.png';
 
   return (
     <div className="bg-[#1a262d] rounded-lg shadow-md p-4 flex justify-between mb-4 w-full">
       <div className="flex space-x-4">
         <img
-          src={product.image}
+          src={product.images[0]}
           alt={product.name}
           className="w-16 h-16 object-cover rounded-md mb-2"
         />

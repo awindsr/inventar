@@ -72,7 +72,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
         onUpdate(editedProduct); // Pass the updated product to the parent component
     }
   };
+  const defaultImage = '/image-placeholder.png';
 
+console.log(Image)
   const addImage = () => {
     if (newImageUrl) {
       setEditedProduct((prev) => ({
