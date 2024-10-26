@@ -26,7 +26,7 @@ export function SignIn() {
   };
 
   return (
-    <div className="min-h-screen bg-custom-gradient text-white">
+    <div className="min-h-screen bg-custom-gradient text-white font-raleway">
       <header className="container mx-auto px-4 py-6 flex justify-between items-center">
         <div className="flex items-end justify-center gap-2">
           <Image
