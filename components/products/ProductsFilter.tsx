@@ -15,9 +15,17 @@ interface FilterOption {
   count?: number;
   isActive?: boolean;
 }
+interface Filters {
+  status: string;
+  productTypes: FilterOption[];
+  minPrice: string;
+  maxPrice: string;
+  selectedStock: string;
+  selectedCategory: string;
+}
 
 interface ProductFilterProps {
-  onFilterChange: (filters: any) => void; // Prop to handle filter changes
+  onFilterChange: (filters: Filters) => void; // Prop to handle filter changes
   onReset: () => void; // Prop to reset filters
 }
 
