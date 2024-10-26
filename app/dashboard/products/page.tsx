@@ -7,10 +7,10 @@ export default function page() {
   return (
     <div className='min-h-screen flex flex-col'>
         <div>
-        <ProductsNavbar/>
+        {/* <ProductsNavbar/> */}
         </div>
         <div className='flex items-start justify-between space-x-4 w-full h-full'>
-            <ProductsFilter/>
+            {/* <ProductsFilter/> */}
             <ProductsList/>
 
         </div>

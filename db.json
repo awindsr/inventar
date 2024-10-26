@@ -1,504 +1,1034 @@
 {
-    "products": [
-      {
-        "name": "Product 1",
-        "marketPrice": 99.99,
-        "retailPrice": 89.99,
-        "stockAvailable": 50,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier A",
-        "productCode": "P001",
-        "category": "Electronics"
+  "products": [
+    {
+      "name": "Product 1",
+      "marketPrice": 99.99,
+      "retailPrice": 89.99,
+      "stockAvailable": 50,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Main+Image",
+        "https://via.placeholder.com/800x600?text=Side+View",
+        "https://via.placeholder.com/800x600?text=Detail+View",
+        "https://via.placeholder.com/800x600?text=Package+Contents"
+      ],
+      "supplierName": "Supplier A",
+      "productCode": "P001",
+      "category": "Electronics",
+      "subCategory": "Smartphones",
+      "specifications": {
+        "brand": "TechBrand",
+        "model": "X1",
+        "storage": "128GB",
+        "ram": "8GB",
+        "screenSize": "6.5 inches",
+        "colors": [
+          {
+            "name": "Black",
+            "hex": "#000000",
+            "inStock": true
+          },
+          {
+            "name": "Silver",
+            "hex": "#C0C0C0",
+            "inStock": true
+          },
+          {
+            "name": "Blue",
+            "hex": "#0000FF",
+            "inStock": false
+          }
+        ],
+        "warranty": "12 months"
       },
-      {
-        "name": "Product 2",
-        "marketPrice": 199.99,
-        "retailPrice": 179.99,
-        "stockAvailable": 30,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier B",
-        "productCode": "P002",
-        "category": "Home Appliances"
+      "details": {
+        "description": "High-performance smartphone with advanced features",
+        "highlights": [
+          "Latest processor technology",
+          "Advanced camera system",
+          "All-day battery life",
+          "5G capable"
+        ],
+        "inBox": [
+          "Phone",
+          "Charger",
+          "USB Cable",
+          "User Manual",
+          "SIM Ejector Tool"
+        ]
       },
-      {
-        "name": "Product 3",
-        "marketPrice": 299.99,
-        "retailPrice": 249.99,
-        "stockAvailable": 20,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier C",
-        "productCode": "P003",
-        "category": "Furniture"
+      "variants": [
+        {
+          "id": "P001-128GB-BLACK",
+          "storage": "128GB",
+          "color": "Black",
+          "price": 89.99,
+          "stockAvailable": 20
+        },
+        {
+          "id": "P001-128GB-SILVER",
+          "storage": "128GB",
+          "color": "Silver",
+          "price": 89.99,
+          "stockAvailable": 15
+        }
+      ],
+      "reviews": {
+        "averageRating": 4.5,
+        "totalReviews": 128
       },
-      {
-        "name": "Product 4",
-        "marketPrice": 49.99,
-        "retailPrice": 39.99,
-        "stockAvailable": 100,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier D",
-        "productCode": "P004",
-        "category": "Clothing"
-      },
-      {
-        "name": "Product 5",
-        "marketPrice": 79.99,
-        "retailPrice": 69.99,
-        "stockAvailable": 75,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier E",
-        "productCode": "P005",
-        "category": "Footwear"
-      },
-      {
-        "name": "Product 6",
-        "marketPrice": 29.99,
-        "retailPrice": 24.99,
-        "stockAvailable": 150,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier F",
-        "productCode": "P006",
-        "category": "Toys"
-      },
-      {
-        "name": "Product 7",
-        "marketPrice": 14.99,
-        "retailPrice": 12.99,
-        "stockAvailable": 200,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier G",
-        "productCode": "P007",
-        "category": "Books"
-      },
-      {
-        "name": "Product 8",
-        "marketPrice": 59.99,
-        "retailPrice": 49.99,
-        "stockAvailable": 60,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier H",
-        "productCode": "P008",
-        "category": "Sports"
-      },
-      {
-        "name": "Product 9",
-        "marketPrice": 39.99,
-        "retailPrice": 34.99,
-        "stockAvailable": 80,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier I",
-        "productCode": "P009",
-        "category": "Beauty"
-      },
-      {
-        "name": "Product 10",
-        "marketPrice": 19.99,
-        "retailPrice": 17.99,
-        "stockAvailable": 120,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier J",
-        "productCode": "P010",
-        "category": "Health"
-      },
-      {
-        "name": "Product 11",
-        "marketPrice": 149.99,
-        "retailPrice": 129.99,
-        "stockAvailable": 45,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier A",
-        "productCode": "P011",
-        "category": "Electronics"
-      },
-      {
-        "name": "Product 12",
-        "marketPrice": 249.99,
-        "retailPrice": 219.99,
-        "stockAvailable": 35,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier B",
-        "productCode": "P012",
-        "category": "Home Appliances"
-      },
-      {
-        "name": "Product 13",
-        "marketPrice": 349.99,
-        "retailPrice": 299.99,
-        "stockAvailable": 15,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier C",
-        "productCode": "P013",
-        "category": "Furniture"
-      },
-      {
-        "name": "Product 14",
-        "marketPrice": 69.99,
-        "retailPrice": 59.99,
-        "stockAvailable": 90,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier D",
-        "productCode": "P014",
-        "category": "Clothing"
-      },
-      {
-        "name": "Product 15",
-        "marketPrice": 89.99,
-        "retailPrice": 79.99,
-        "stockAvailable": 70,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier E",
-        "productCode": "P015",
-        "category": "Footwear"
-      },
-      {
-        "name": "Product 16",
-        "marketPrice": 39.99,
-        "retailPrice": 34.99,
-        "stockAvailable": 140,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier F",
-        "productCode": "P016",
-        "category": "Toys"
-      },
-      {
-        "name": "Product 17",
-        "marketPrice": 19.99,
-        "retailPrice": 17.99,
-        "stockAvailable": 180,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier G",
-        "productCode": "P017",
-        "category": "Books"
-      },
-      {
-        "name": "Product 18",
-        "marketPrice": 69.99,
-        "retailPrice": 59.99,
-        "stockAvailable": 55,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier H",
-        "productCode": "P018",
-        "category": "Sports"
-      },
-      {
-        "name": "Product 19",
-        "marketPrice": 49.99,
-        "retailPrice": 44.99,
-        "stockAvailable": 85,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier I",
-        "productCode": "P019",
-        "category": "Beauty"
-      },
-      {
-        "name": "Product 20",
-        "marketPrice": 29.99,
-        "retailPrice": 24.99,
-        "stockAvailable": 110,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier J",
-        "productCode": "P020",
-        "category": "Health"
-      },
-      {
-        "name": "Product 21",
-        "marketPrice": 199.99,
-        "retailPrice": 179.99,
-        "stockAvailable": 40,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier A",
-        "productCode": "P021",
-        "category": "Electronics"
-      },
-      {
-        "name": "Product 22",
-        "marketPrice": 299.99,
-        "retailPrice": 249.99,
-        "stockAvailable": 25,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier B",
-        "productCode": "P022",
-        "category": "Home Appliances"
-      },
-      {
-        "name": "Product 23",
-        "marketPrice": 399.99,
-        "retailPrice": 349.99,
-        "stockAvailable": 10,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier C",
-        "productCode": "P023",
-        "category": "Furniture"
-      },
-      {
-        "name": "Product 24",
-        "marketPrice": 69.99,
-        "retailPrice": 59.99,
-        "stockAvailable": 95,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier D",
-        "productCode": "P024",
-        "category": "Clothing"
-      },
-      {
-        "name": "Product 25",
-        "marketPrice": 89.99,
-        "retailPrice": 79.99,
-        "stockAvailable": 65,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier E",
-        "productCode": "P025",
-        "category": "Footwear"
-      },
-      {
-        "name": "Product 26",
-        "marketPrice": 49.99,
-        "retailPrice": 44.99,
-        "stockAvailable": 130,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier F",
-        "productCode": "P026",
-        "category": "Toys"
-      },
-      {
-        "name": "Product 27",
-        "marketPrice": 24.99,
-        "retailPrice": 22.99,
-        "stockAvailable": 190,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier G",
-        "productCode": "P027",
-        "category": "Books"
-      },
-      {
-        "name": "Product 28",
-        "marketPrice": 79.99,
-        "retailPrice": 69.99,
-        "stockAvailable": 50,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier H",
-        "productCode": "P028",
-        "category": "Sports"
-      },
-      {
-        "name": "Product 29",
-        "marketPrice": 39.99,
-        "retailPrice": 34.99,
-        "stockAvailable": 80,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier I",
-        "productCode": "P029",
-        "category": "Beauty"
-      },
-      {
-        "name": "Product 30",
-        "marketPrice": 19.99,
-        "retailPrice": 17.99,
-        "stockAvailable": 120,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier J",
-        "productCode": "P030",
-        "category": "Health"
-      },
-      {
-        "name": "Product 31",
-        "marketPrice": 149.99,
-        "retailPrice": 129.99,
-        "stockAvailable": 45,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier A",
-        "productCode": "P031",
-        "category": "Electronics"
-      },
-      {
-        "name": "Product 32",
-        "marketPrice": 249.99,
-        "retailPrice": 219.99,
-        "stockAvailable": 35,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier B",
-        "productCode": "P032",
-        "category": "Home Appliances"
-      },
-      {
-        "name": "Product 33",
-        "marketPrice": 349.99,
-        "retailPrice": 299.99,
-        "stockAvailable": 15,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier C",
-        "productCode": "P033",
-        "category": "Furniture"
-      },
-      {
-        "name": "Product 34",
-        "marketPrice": 69.99,
-        "retailPrice": 59.99,
-        "stockAvailable": 90,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier D",
-        "productCode": "P034",
-        "category": "Clothing"
-      },
-      {
-        "name": "Product 35",
-        "marketPrice": 89.99,
-        "retailPrice": 79.99,
-        "stockAvailable": 70,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier E",
-        "productCode": "P035",
-        "category": "Footwear"
-      },
-      {
-        "name": "Product 36",
-        "marketPrice": 39.99,
-        "retailPrice": 34.99,
-        "stockAvailable": 140,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier F",
-        "productCode": "P036",
-        "category": "Toys"
-      },
-      {
-        "name": "Product 37",
-        "marketPrice": 19.99,
-        "retailPrice": 17.99,
-        "stockAvailable": 180,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier G",
-        "productCode": "P037",
-        "category": "Books"
-      },
-      {
-        "name": "Product 38",
-        "marketPrice": 69.99,
-        "retailPrice": 59.99,
-        "stockAvailable": 55,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier H",
-        "productCode": "P038",
-        "category": "Sports"
-      },
-      {
-        "name": "Product 39",
-        "marketPrice": 49.99,
-        "retailPrice": 44.99,
-        "stockAvailable": 85,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier I",
-        "productCode": "P039",
-        "category": "Beauty"
-      },
-      {
-        "name": "Product 40",
-        "marketPrice": 29.99,
-        "retailPrice": 24.99,
-        "stockAvailable": 110,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier J",
-        "productCode": "P040",
-        "category": "Health"
-      },
-      {
-        "name": "Product 41",
-        "marketPrice": 199.99,
-        "retailPrice": 179.99,
-        "stockAvailable": 40,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier A",
-        "productCode": "P041",
-        "category": "Electronics"
-      },
-      {
-        "name": "Product 42",
-        "marketPrice": 299.99,
-        "retailPrice": 249.99,
-        "stockAvailable": 25,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier B",
-        "productCode": "P042",
-        "category": "Home Appliances"
-      },
-      {
-        "name": "Product 43",
-        "marketPrice": 399.99,
-        "retailPrice": 349.99,
-        "stockAvailable": 10,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier C",
-        "productCode": "P043",
-        "category": "Furniture"
-      },
-      {
-        "name": "Product 44",
-        "marketPrice": 69.99,
-        "retailPrice": 59.99,
-        "stockAvailable": 95,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier D",
-        "productCode": "P044",
-        "category": "Clothing"
-      },
-      {
-        "name": "Product 45",
-        "marketPrice": 89.99,
-        "retailPrice": 79.99,
-        "stockAvailable": 65,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier E",
-        "productCode": "P045",
-        "category": "Footwear"
-      },
-      {
-        "name": "Product 46",
-        "marketPrice": 49.99,
-        "retailPrice": 44.99,
-        "stockAvailable": 130,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier F",
-        "productCode": "P046",
-        "category": "Toys"
-      },
-      {
-        "name": "Product 47",
-        "marketPrice": 24.99,
-        "retailPrice": 22.99,
-        "stockAvailable": 190,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier G",
-        "productCode": "P047",
-        "category": "Books"
-      },
-      {
-        "name": "Product 48",
-        "marketPrice": 79.99,
-        "retailPrice": 69.99,
-        "stockAvailable": 50,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier H",
-        "productCode": "P048",
-        "category": "Sports"
-      },
-      {
-        "name": "Product 49",
-        "marketPrice": 39.99,
-        "retailPrice": 34.99,
-        "stockAvailable": 80,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier I",
-        "productCode": "P049",
-        "category": "Beauty"
-      },
-      {
-        "name": "Product 50",
-        "marketPrice": 19.99,
-        "retailPrice": 17.99,
-        "stockAvailable": 120,
-        "image": "https://via.placeholder.com/150",
-        "supplierName": "Supplier J",
-        "productCode": "P050",
-        "category": "Health"
+      "metadata": {
+        "dateAdded": "2024-01-15",
+        "lastUpdated": "2024-03-20",
+        "tags": ["smartphone", "mobile", "5g", "techbrand"]
       }
-    ]
-  }
+    },
+    {
+      "name": "Product 2",
+      "marketPrice": 199.99,
+      "retailPrice": 179.99,
+      "stockAvailable": 30,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Front+View",
+        "https://via.placeholder.com/800x600?text=Side+View",
+        "https://via.placeholder.com/800x600?text=Controls",
+        "https://via.placeholder.com/800x600?text=Features"
+      ],
+      "supplierName": "Supplier B",
+      "productCode": "P002",
+      "category": "Home Appliances",
+      "subCategory": "Kitchen Appliances",
+      "specifications": {
+        "brand": "HomePro",
+        "powerConsumption": "1200W",
+        "dimensions": {
+          "width": 60,
+          "height": 85,
+          "depth": 60,
+          "unit": "cm"
+        },
+        "colors": [
+          {
+            "name": "White",
+            "hex": "#FFFFFF",
+            "inStock": true
+          },
+          {
+            "name": "Silver",
+            "hex": "#C0C0C0",
+            "inStock": true
+          }
+        ],
+        "features": [
+          {
+            "name": "Energy Efficient",
+            "description": "A+++ energy rating for maximum efficiency"
+          },
+          {
+            "name": "Smart Control",
+            "description": "WiFi-enabled with smartphone app control"
+          }
+        ],
+        "warranty": "24 months"
+      },
+      "details": {
+        "description": "Smart kitchen appliance with advanced features",
+        "highlights": [
+          "Energy efficient operation",
+          "Smart home compatible",
+          "Quiet operation",
+          "Easy maintenance"
+        ],
+        "inBox": [
+          "Main Unit",
+          "User Manual",
+          "Warranty Card",
+          "Installation Guide"
+        ]
+      },
+      "variants": [
+        {
+          "id": "P002-WHITE",
+          "color": "White",
+          "price": 179.99,
+          "stockAvailable": 15
+        },
+        {
+          "id": "P002-SILVER",
+          "color": "Silver",
+          "price": 179.99,
+          "stockAvailable": 15
+        }
+      ],
+      "reviews": {
+        "averageRating": 4.2,
+        "totalReviews": 85
+      },
+      "metadata": {
+        "dateAdded": "2024-02-01",
+        "lastUpdated": "2024-03-15",
+        "tags": ["appliance", "kitchen", "smart-home"]
+      }
+    },
+    {
+      "name": "Product 3",
+      "marketPrice": 299.99,
+      "retailPrice": 249.99,
+      "stockAvailable": 20,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Smart+TV",
+        "https://via.placeholder.com/800x600?text=Smart+TV+Side",
+        "https://via.placeholder.com/800x600?text=Smart+TV+Back"
+      ],
+      "supplierName": "Supplier C",
+      "productCode": "P003",
+      "category": "Electronics",
+      "subCategory": "Televisions",
+      "specifications": {
+        "brand": "VisionTech",
+        "model": "UltraHD 55",
+        "screenSize": "55 inches",
+        "resolution": "4K",
+        "features": [
+          {
+            "name": "Smart TV",
+            "description": "Access to streaming services"
+          },
+          {
+            "name": "HDR",
+            "description": "High Dynamic Range for better colors"
+          }
+        ],
+        "warranty": "18 months"
+      },
+      "details": {
+        "description": "55-inch Ultra HD Smart TV with HDR support.",
+        "highlights": [
+          "4K resolution",
+          "Smart features",
+          "Multiple HDMI ports"
+        ],
+        "inBox": [
+          "TV",
+          "Remote Control",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.7,
+        "totalReviews": 50
+      },
+      "metadata": {
+        "dateAdded": "2024-03-01",
+        "lastUpdated": "2024-03-10",
+        "tags": ["tv", "electronics", "smart"]
+      }
+    },
+    {
+      "name": "Product 4",
+      "marketPrice": 49.99,
+      "retailPrice": 39.99,
+      "stockAvailable": 100,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Wireless+Headphones",
+        "https://via.placeholder.com/800x600?text=Headphones+Side",
+        "https://via.placeholder.com/800x600?text=Headphones+Detail"
+      ],
+      "supplierName": "Supplier D",
+      "productCode": "P004",
+      "category": "Electronics",
+      "subCategory": "Audio",
+      "specifications": {
+        "brand": "SoundWave",
+        "model": "ProX",
+        "batteryLife": "20 hours",
+        "colors": [
+          {
+            "name": "Black",
+            "hex": "#000000",
+            "inStock": true
+          },
+          {
+            "name": "Red",
+            "hex": "#FF0000",
+            "inStock": true
+          }
+        ],
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Wireless headphones with noise cancellation.",
+        "highlights": [
+          "Bluetooth connectivity",
+          "Comfortable fit",
+          "Built-in microphone"
+        ],
+        "inBox": [
+          "Headphones",
+          "Charging Cable",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.5,
+        "totalReviews": 75
+      },
+      "metadata": {
+        "dateAdded": "2024-02-15",
+        "lastUpdated": "2024-03-05",
+        "tags": ["headphones", "audio", "wireless"]
+      }
+    },
+    {
+      "name": "Product 5",
+      "marketPrice": 599.99,
+      "retailPrice": 499.99,
+      "stockAvailable": 15,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Laptop",
+        "https://via.placeholder.com/800x600?text=Laptop+Side",
+        "https://via.placeholder.com/800x600?text=Laptop+Detail"
+      ],
+      "supplierName": "Supplier E",
+      "productCode": "P005",
+      "category": "Electronics",
+      "subCategory": "Laptops",
+      "specifications": {
+        "brand": "TechGiant",
+        "model": "XPro 15",
+        "processor": "Intel i7",
+        "ram": "16GB",
+        "storage": "512GB SSD",
+        "warranty": "24 months"
+      },
+      "details": {
+        "description": "High-performance laptop for professionals.",
+        "highlights": [
+          "Lightweight design",
+          "Long battery life",
+          "High-resolution display"
+        ],
+        "inBox": [
+          "Laptop",
+          "Charger",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.8,
+        "totalReviews": 30
+      },
+      "metadata": {
+        "dateAdded": "2024-01-20",
+        "lastUpdated": "2024-02-10",
+        "tags": ["laptop", "electronics", "tech"]
+      }
+    },
+    {
+      "name": "Product 6",
+      "marketPrice": 29.99,
+      "retailPrice": 24.99,
+      "stockAvailable": 200,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Bluetooth+Speaker",
+        "https://via.placeholder.com/800x600?text=Speaker+Side",
+        "https://via.placeholder.com/800x600?text=Speaker+Detail"
+      ],
+      "supplierName": "Supplier F",
+      "productCode": "P006",
+      "category": "Electronics",
+      "subCategory": "Audio",
+      "specifications": {
+        "brand": "BassBoom",
+        "batteryLife": "10 hours",
+        "colors": [
+          {
+            "name": "Black",
+            "hex": "#000000",
+            "inStock": true
+          },
+          {
+            "name": "Blue",
+            "hex": "#0000FF",
+            "inStock": true
+          }
+        ],
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Portable Bluetooth speaker with powerful sound.",
+        "highlights": [
+          "Water-resistant",
+          "Compact design",
+          "Built-in microphone"
+        ],
+        "inBox": [
+          "Speaker",
+          "Charging Cable",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.6,
+        "totalReviews": 60
+      },
+      "metadata": {
+        "dateAdded": "2024-02-05",
+        "lastUpdated": "2024-03-01",
+        "tags": ["speaker", "audio", "bluetooth"]
+      }
+    },
+    {
+      "name": "Product 7",
+      "marketPrice": 399.99,
+      "retailPrice": 349.99,
+      "stockAvailable": 25,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Smartwatch",
+        "https://via.placeholder.com/800x600?text=Smartwatch+Side",
+        "https://via.placeholder.com/800x600?text=Smartwatch+Detail"
+      ],
+      "supplierName": "Supplier G",
+      "productCode": "P007",
+      "category": "Electronics",
+      "subCategory": "Wearables",
+      "specifications": {
+        "brand": "FitTrack",
+        "model": "ProWatch",
+        "features": [
+          {
+            "name": "Heart Rate Monitor",
+            "description": "Tracks your heart rate continuously"
+          },
+          {
+            "name": "GPS",
+            "description": "Built-in GPS for accurate tracking"
+          }
+        ],
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Smartwatch with fitness tracking features.",
+        "highlights": [
+          "Water-resistant",
+          "Customizable watch faces",
+          "Notifications from your phone"
+        ],
+        "inBox": [
+          "Smartwatch",
+          "Charging Dock",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.4,
+        "totalReviews": 40
+      },
+      "metadata": {
+        "dateAdded": "2024-01-25",
+        "lastUpdated": "2024-02-15",
+        "tags": ["smartwatch", "wearable", "fitness"]
+      }
+    },
+    {
+      "name": "Product 8",
+      "marketPrice": 89.99,
+      "retailPrice": 79.99,
+      "stockAvailable": 60,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Gaming+Mouse",
+        "https://via.placeholder.com/800x600?text=Mouse+Side",
+        "https://via.placeholder.com/800x600?text=Mouse+Detail"
+      ],
+      "supplierName": "Supplier H",
+      "productCode": "P008",
+      "category": "Electronics",
+      "subCategory": "Gaming",
+      "specifications": {
+        "brand": "GameMaster",
+        "dpi": "16000",
+        "colors": [
+          {
+            "name": "Black",
+            "hex": "#000000",
+            "inStock": true
+          },
+          {
+            "name": "RGB",
+            "hex": "#FFFFFF",
+            "inStock": true
+          }
+        ],
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "High-precision gaming mouse with customizable DPI.",
+        "highlights": [
+          "Ergonomic design",
+          "RGB lighting",
+          "Programmable buttons"
+        ],
+        "inBox": [
+          "Gaming Mouse",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.3,
+        "totalReviews": 55
+      },
+      "metadata": {
+        "dateAdded": "2024-02-20",
+        "lastUpdated": "2024-03-10",
+        "tags": ["gaming", "mouse", "electronics"]
+      }
+    },
+    {
+      "name": "Product 9",
+      "marketPrice": 149.99,
+      "retailPrice": 129.99,
+      "stockAvailable": 40,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Mechanical+Keyboard",
+        "https://via.placeholder.com/800x600?text=Keyboard+Side",
+        "https://via.placeholder.com/800x600?text=Keyboard+Detail"
+      ],
+      "supplierName": "Supplier I",
+      "productCode": "P009",
+      "category": "Electronics",
+      "subCategory": "Gaming",
+      "specifications": {
+        "brand": "KeyMaster",
+        "switchType": "Mechanical",
+        "colors": [
+          {
+            "name": "Black",
+            "hex": "#000000",
+            "inStock": true
+          },
+          {
+            "name": "RGB",
+            "hex": "#FFFFFF",
+            "inStock": true
+          }
+        ],
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Mechanical keyboard with customizable RGB lighting.",
+        "highlights": [
+          "Durable key switches",
+          "Anti-ghosting technology",
+          "Customizable macros"
+        ],
+        "inBox": [
+          "Keyboard",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.6,
+        "totalReviews": 70
+      },
+      "metadata": {
+        "dateAdded": "2024-02-25",
+        "lastUpdated": "2024-03-15",
+        "tags": ["keyboard", "gaming", "mechanical"]
+      }
+    },
+    {
+      "name": "Product 10",
+      "marketPrice": 299.99,
+      "retailPrice": 249.99,
+      "stockAvailable": 10,
+      "images": [
+        "https://via.placeholder.com/800x600?text=4K+Monitor",
+        "https://via.placeholder.com/800x600?text=Monitor+Side",
+        "https://via.placeholder.com/800x600?text=Monitor+Detail"
+      ],
+      "supplierName": "Supplier J",
+      "productCode": "P010",
+      "category": "Electronics",
+      "subCategory": "Monitors",
+      "specifications": {
+        "brand": "VisionPro",
+        "screenSize": "27 inches",
+        "resolution": "4K",
+        "warranty": "24 months"
+      },
+      "details": {
+        "description": "27-inch 4K monitor with stunning visuals.",
+        "highlights": [
+          "Ultra HD resolution",
+          "Wide color gamut",
+          "Multiple connectivity options"
+        ],
+        "inBox": [
+          "Monitor",
+          "Stand",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.9,
+        "totalReviews": 20
+      },
+      "metadata": {
+        "dateAdded": "2024-03-05",
+        "lastUpdated": "2024-03-15",
+        "tags": ["monitor", "4k", "electronics"]
+      }
+    },
+    {
+      "name": "Product 11",
+      "marketPrice": 59.99,
+      "retailPrice": 49.99,
+      "stockAvailable": 150,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Smart+Light+Bulb",
+        "https://via.placeholder.com/800x600?text=Light+Bulb+Side",
+        "https://via.placeholder.com/800x600?text=Light+Bulb+Detail"
+      ],
+      "supplierName": "Supplier K",
+      "productCode": "P011",
+      "category": "Home Automation",
+      "subCategory": "Lighting",
+      "specifications": {
+        "brand": "BrightHome",
+        "wattage": "10W",
+        "colors": [
+          {
+            "name": "White",
+            "hex": "#FFFFFF",
+            "inStock": true
+          },
+          {
+            "name": "RGB",
+            "hex": "#FF0000",
+            "inStock": true
+          }
+        ],
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Smart light bulb with app control.",
+        "highlights": [
+          "Voice control compatible",
+          "Energy saving",
+          "Customizable colors"
+        ],
+        "inBox": [
+          "Light Bulb",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.5,
+        "totalReviews": 80
+      },
+      "metadata": {
+        "dateAdded": "2024-03-10",
+        "lastUpdated": "2024-03-15",
+        "tags": ["smart home", "lighting", "automation"]
+      }
+    },
+    {
+      "name": "Product 12",
+      "marketPrice": 39.99,
+      "retailPrice": 29.99,
+      "stockAvailable": 300,
+      "images": [
+        "https://via.placeholder.com/800x600?text=USB+Wall+Charger",
+        "https://via.placeholder.com/800x600?text=Charger+Side",
+        "https://via.placeholder.com/800x600?text=Charger+Detail"
+      ],
+      "supplierName": "Supplier L",
+      "productCode": "P012",
+      "category": "Accessories",
+      "subCategory": "Chargers",
+      "specifications": {
+        "brand": "ChargeFast",
+        "output": "2.4A",
+        "colors": [
+          {
+            "name": "White",
+            "hex": "#FFFFFF",
+            "inStock": true
+          }
+        ],
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Fast USB wall charger for all devices.",
+        "highlights": [
+          "Compact design",
+          "Overcharge protection",
+          "Compatible with all USB devices"
+        ],
+        "inBox": [
+          "Charger",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.8,
+        "totalReviews": 90
+      },
+      "metadata": {
+        "dateAdded": "2024-03-12",
+        "lastUpdated": "2024-03-15",
+        "tags": ["charger", "accessories", "usb"]
+      }
+    },
+    {
+      "name": "Product 13",
+      "marketPrice": 199.99,
+      "retailPrice": 179.99,
+      "stockAvailable": 45,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Electric+Kettle",
+        "https://via.placeholder.com/800x600?text=Kettle+Side",
+        "https://via.placeholder.com/800x600?text=Kettle+Detail"
+      ],
+      "supplierName": "Supplier M",
+      "productCode": "P013",
+      "category": "Home Appliances",
+      "subCategory": "Kitchen Appliances",
+      "specifications": {
+        "brand": "HomeChef",
+        "capacity": "1.7L",
+        "power": "1500W",
+        "warranty": "24 months"
+      },
+      "details": {
+        "description": "Electric kettle with rapid boiling technology.",
+        "highlights": [
+          "Auto shut-off",
+          "Boil-dry protection",
+          "Cordless design"
+        ],
+        "inBox": [
+          "Kettle",
+          "Base",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.5,
+        "totalReviews": 60
+      },
+      "metadata": {
+        "dateAdded": "2024-03-15",
+        "lastUpdated": "2024-03-20",
+        "tags": ["kitchen", "appliance", "kettle"]
+      }
+    },
+    {
+      "name": "Product 14",
+      "marketPrice": 89.99,
+      "retailPrice": 79.99,
+      "stockAvailable": 80,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Air+Fryer",
+        "https://via.placeholder.com/800x600?text=Fryer+Side",
+        "https://via.placeholder.com/800x600?text=Fryer+Detail"
+      ],
+      "supplierName": "Supplier N",
+      "productCode": "P014",
+      "category": "Home Appliances",
+      "subCategory": "Kitchen Appliances",
+      "specifications": {
+        "brand": "CrispMaster",
+        "capacity": "3.5L",
+        "power": "1500W",
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Air fryer for healthy cooking.",
+        "highlights": [
+          "Rapid air technology",
+          "Easy to clean",
+          "Adjustable temperature control"
+        ],
+        "inBox": [
+          "Air Fryer",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.6,
+        "totalReviews": 50
+      },
+      "metadata": {
+        "dateAdded": "2024-03-18",
+        "lastUpdated": "2024-03-20",
+        "tags": ["kitchen", "appliance", "air fryer"]
+      }
+    },
+    {
+      "name": "Product 15",
+      "marketPrice": 149.99,
+      "retailPrice": 129.99,
+      "stockAvailable": 35,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Electric+Grill",
+        "https://via.placeholder.com/800x600?text=Grill+Side",
+        "https://via.placeholder.com/800x600?text=Grill+Detail"
+      ],
+      "supplierName": "Supplier O",
+      "productCode": "P015",
+      "category": "Home Appliances",
+      "subCategory": "Grills",
+      "specifications": {
+        "brand": "GrillMaster",
+        "power": "2000W",
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Electric grill for indoor cooking.",
+        "highlights": [
+          "Non-stick surface",
+          "Adjustable temperature control",
+          "Easy to clean"
+        ],
+        "inBox": [
+          "Grill",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.4,
+        "totalReviews": 45
+      },
+      "metadata": {
+        "dateAdded": "2024-03-20",
+        "lastUpdated": "2024-03-20",
+        "tags": ["kitchen", "appliance", "grill"]
+      }
+    },
+    {
+      "name": "Product 16",
+      "marketPrice": 79.99,
+      "retailPrice": 69.99,
+      "stockAvailable": 90,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Portable+Blender",
+        "https://via.placeholder.com/800x600?text=Blender+Side",
+        "https://via.placeholder.com/800x600?text=Blender+Detail"
+      ],
+      "supplierName": "Supplier P",
+      "productCode": "P016",
+      "category": "Home Appliances",
+      "subCategory": "Blenders",
+      "specifications": {
+        "brand": "BlendIt",
+        "power": "300W",
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Portable blender for smoothies and shakes.",
+        "highlights": [
+          "Compact design",
+          "Easy to use",
+          "Rechargeable battery"
+        ],
+        "inBox": [
+          "Blender",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.5,
+        "totalReviews": 30
+      },
+      "metadata": {
+        "dateAdded": "2024-03-22",
+        "lastUpdated": "2024-03-22",
+        "tags": ["kitchen", "appliance", "blender"]
+      }
+    },
+    {
+      "name": "Product 17",
+      "marketPrice": 199.99,
+      "retailPrice": 179.99,
+      "stockAvailable": 20,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Robot+Vacuum",
+        "https://via.placeholder.com/800x600?text=Vacuum+Side",
+        "https://via.placeholder.com/800x600?text=Vacuum+Detail"
+      ],
+      "supplierName": "Supplier Q",
+      "productCode": "P017",
+      "category": "Home Appliances",
+      "subCategory": "Cleaning",
+      "specifications": {
+        "brand": "CleanBot",
+        "batteryLife": "120 minutes",
+        "warranty": "24 months"
+      },
+      "details": {
+        "description": "Robot vacuum cleaner with smart navigation.",
+        "highlights": [
+          "Automatic charging",
+          "App control",
+          "Multiple cleaning modes"
+        ],
+        "inBox": [
+          "Robot Vacuum",
+          "Charging Dock",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.7,
+        "totalReviews": 25
+      },
+      "metadata": {
+        "dateAdded": "2024-03-25",
+        "lastUpdated": "2024-03-25",
+        "tags": ["cleaning", "robot", "vacuum"]
+      }
+    },
+    {
+      "name": "Product 18",
+      "marketPrice": 299.99,
+      "retailPrice": 249.99,
+      "stockAvailable": 15,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Smart+Fridge",
+        "https://via.placeholder.com/800x600?text=Fridge+Side",
+        "https://via.placeholder.com/800x600?text=Fridge+Detail"
+      ],
+      "supplierName": "Supplier R",
+      "productCode": "P018",
+      "category": "Home Appliances",
+      "subCategory": "Refrigerators",
+      "specifications": {
+        "brand": "CoolTech",
+        "capacity": "500L",
+        "energyRating": "A++",
+        "warranty": "24 months"
+      },
+      "details": {
+        "description": "Smart fridge with WiFi connectivity.",
+        "highlights": [
+          "Touchscreen display",
+          "Energy efficient",
+          "Multiple compartments"
+        ],
+        "inBox": [
+          "Fridge",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.8,
+        "totalReviews": 10
+      },
+      "metadata": {
+        "dateAdded": "2024-03-30",
+        "lastUpdated": "2024-03-30",
+        "tags": ["fridge", "appliance", "smart"]
+      }
+    },
+    {
+      "name": "Product 19",
+      "marketPrice": 89.99,
+      "retailPrice": 79.99,
+      "stockAvailable": 60,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Electric+Toaster",
+        "https://via.placeholder.com/800x600?text=Toaster+Side",
+        "https://via.placeholder.com/800x600?text=Toaster+Detail"
+      ],
+      "supplierName": "Supplier S",
+      "productCode": "P019",
+      "category": "Home Appliances",
+      "subCategory": "Kitchen Appliances",
+      "specifications": {
+        "brand": "ToastMaster",
+        "slices": "4",
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Electric toaster with multiple settings.",
+        "highlights": [
+          "Wide slots for bagels",
+          "Removable crumb tray",
+          "Adjustable browning control"
+        ],
+        "inBox": [
+          "Toaster",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.5,
+        "totalReviews": 55
+      },
+      "metadata": {
+        "dateAdded": "2024-04-01",
+        "lastUpdated": "2024-04-01",
+        "tags": ["kitchen", "appliance", "toaster"]
+      }
+    },
+    {
+      "name": "Product 20",
+      "marketPrice": 49.99,
+      "retailPrice": 39.99,
+      "stockAvailable": 150,
+      "images": [
+        "https://via.placeholder.com/800x600?text=Water+Bottle",
+        "https://via.placeholder.com/800x600?text=Bottle+Side",
+        "https://via.placeholder.com/800x600?text=Bottle+Detail"
+      ],
+      "supplierName": "Supplier T",
+      "productCode": "P020",
+      "category": "Accessories",
+      "subCategory": "Bottles",
+      "specifications": {
+        "brand": "HydroFlask",
+        "capacity": "1L",
+        "warranty": "12 months"
+      },
+      "details": {
+        "description": "Insulated water bottle for hot and cold drinks.",
+        "highlights": [
+          "Durable stainless steel",
+          "Leak-proof lid",
+          "Easy to carry"
+        ],
+        "inBox": [
+          "Water Bottle",
+          "User Manual"
+        ]
+      },
+      "variants": [],
+      "reviews": {
+        "averageRating": 4.9,
+        "totalReviews": 100
+      },
+      "metadata": {
+        "dateAdded": "2024-04-05",
+        "lastUpdated": "2024-04-05",
+        "tags": ["accessories", "bottle", "hydration"]
+      }
+    }
+  ]
+}

@@ -18,8 +18,8 @@ interface FilterOption {
 }
 
 interface ProductFilterProps {
-  onFilterChange?: (filterType: string, value: string) => void;
-  onReset?: () => void;
+  onFilterChange: (filters: any) => void; // Prop to handle filter changes
+  onReset: () => void; // Prop to reset filters
 }
 
 export default function ProductFilter({ onFilterChange, onReset }: ProductFilterProps) {
@@ -56,34 +56,32 @@ export default function ProductFilter({ onFilterChange, onReset }: ProductFilter
 
   const handleStatusClick = (status: string) => {
     setSelectedStatus(status);
-    onFilterChange?.('status', status);
+    onFilterChange({ status, productTypes, minPrice, maxPrice, selectedStock: 'All Stocks', selectedCategory: 'All Products' });
   };
 
   const handleReset = () => {
-    setSelectedStatus('All'); // Reset selected status to default
+    setSelectedStatus('All');
     setProductTypes(prevTypes =>
       prevTypes.map(type => ({
         ...type,
-        isActive: false // Reset all product types to inactive
+        isActive: false
       }))
     );
-    setMinPrice(''); // Reset minimum price
-    setMaxPrice(''); // Reset maximum price
-    setOpenSections({ stock: false, category: false }); // Close all dropdowns
-    setSelectedSort(sortOptions[0]); // Reset to default sort option
-    setSelectedCategory(categoryOptions[0]);
-    setSelectedStock(stockOptions[0]);
-    console.log('Filters have been reset'); // Log for debugging
+    setMinPrice('');
+    setMaxPrice('');
+    setSelectedStock('All Stocks');
+    setSelectedCategory('All Products');
+    onReset(); // Call the reset function passed from parent
   };
 
   const handleProductTypeClick = (selectedType: string) => {
     setProductTypes(prevTypes =>
       prevTypes.map(type => ({
         ...type,
-        isActive: type.label === selectedType // Set isActive based on the selected type
+        isActive: type.label === selectedType
       }))
     );
-    console.log(`Selected product type: ${selectedType}`);
+    onFilterChange({ status: selectedStatus, productTypes, minPrice, maxPrice, selectedStock: 'All Stocks', selectedCategory: 'All Products' });
   };
 
   const handleStockClick = () => {
@@ -101,15 +99,15 @@ export default function ProductFilter({ onFilterChange, onReset }: ProductFilter
   const [stockOptions] = useState<string[]>(['All Stocks','Low Stock', 'In Stock', 'High Stock']); // Added stock options
 
   const handleStockOptionClick = (option: string) => {
-    setSelectedStock(option); // Update selected stock
-    setOpenSections(prev => ({ ...prev, stock: false })); // Close the dropdown after selection
+    setSelectedStock(option);
+    onFilterChange({ status: selectedStatus, productTypes, minPrice, maxPrice, selectedStock: option, selectedCategory: 'All Products' });
   };
 
   const [categoryOptions] = useState<string[]>(['All Products', 'Electronics', 'Home Appliances', 'Furniture', 'Clothing', 'Footwear', 'Toys', 'Books', 'Sports', 'Beauty', 'Health']); // Added category options
 
   const handleCategoryOptionClick = (category: string) => {
-    setSelectedCategory(category); // Update selected category
-    setOpenSections(prev => ({ ...prev, category: false })); // Close the dropdown after selection
+    setSelectedCategory(category);
+    onFilterChange({ status: selectedStatus, productTypes, minPrice, maxPrice, selectedStock: 'All Stocks', selectedCategory: category });
   };
 
   const [sortOptions] = useState<string[]>([
@@ -142,7 +140,7 @@ export default function ProductFilter({ onFilterChange, onReset }: ProductFilter
   const [selectedCategory, setSelectedCategory] = useState<string>('All product'); // Default selected category
 
   return (
-    <div className="w-1/4 h-screen overflow-scroll flex flex-col justify-between bg-[#1a262d] text-white p-4 rounded-lg">
+    <div className="w-1/5 h-screen overflow-scroll flex flex-col justify-between bg-[#1a262d] text-white p-4 rounded-lg">
       {/* Product Status */}
       <div className="mb-6">
         <h3 className="text-sm text-gray-400 mb-3">PRODUCT STATUS</h3>
@@ -170,7 +168,7 @@ export default function ProductFilter({ onFilterChange, onReset }: ProductFilter
           {productTypes.map((type) => (
             <button
               key={type.label}
-              onClick={() => handleProductTypeClick(type.label)} // Updated to handle click
+              onClick={() => handleProductTypeClick(type.label)}
               className={`flex items-center rounded-lg px-4 py-2 text-sm border
                 ${type.isActive 
                   ? 'bg-[#202e36] border-primary text-white' 
