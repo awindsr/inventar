@@ -1,8 +1,9 @@
 import type React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import type { Product, Color, Feature, Dimensions } from '../../types/productTypes';
-
+import { createClient } from '../../utils/supabase/client'; // Import the Supabase client
+const supabase = createClient(); // Create an instance of the Supabase client
 
 interface ProductModalProps {
   product: Product;
@@ -16,10 +17,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
   onUpdate,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedProduct, setEditedProduct] = useState<Product>(product); // Specify the type for editedProduct
+  const [editedProduct, setEditedProduct] = useState<Product>(product); // Initialize with current product values
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
   const [newImageUrl, setNewImageUrl] = useState("");
+
+  // Update editedProduct when product prop changes
+  useEffect(() => {
+    setEditedProduct(product);
+  }, [product]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -46,14 +52,25 @@ const ProductModal: React.FC<ProductModalProps> = ({
     } else {
       setEditedProduct((prev) => ({
         ...prev,
-        [name]: value,
+        [name]: value, // Update the state with the new value
       }));
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onUpdate(editedProduct); // Pass the updated product
+    
+    // Update the product in Supabase
+    const { data, error } = await supabase
+        .from('products') // Replace 'products' with your actual table name
+        .update(editedProduct) // Update with the edited product data
+        .eq('id', product.id); // Assuming 'id' is the primary key for the product
+
+    if (error) {
+        console.error('Error updating product:', error);
+    } else {
+        onUpdate(editedProduct); // Pass the updated product to the parent component
+    }
   };
 
   const addImage = () => {
@@ -161,8 +178,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <input
                 type="number"
                 name="marketPrice"
-                value={editedProduct.marketPrice}
-                onChange={handleChange}
+                value={editedProduct.marketPrice} // Bind to editedProduct state
+                onChange={handleChange} // Update state on change
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
             </div>
@@ -468,13 +485,13 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   <div className="flex justify-between">
                     <span className="text-gray-400">Market Price:</span>
                     <span className="text-white">
-                      ${product.marketPrice.toFixed(2)}
+                      ${product.market_price.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Retail Price:</span>
                     <span className="text-green-500 font-semibold">
-                      ${product.retailPrice.toFixed(2)}
+                      ${product.retail_price.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between">

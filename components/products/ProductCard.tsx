@@ -52,10 +52,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="flex space-x-8">
 
       <p className="text-gray-600 ">
-        Retail Price<br/><span className="text-white font-2xl">${product.retailPrice.toFixed(2)}</span> 
+        Retail Price<br/><span className="text-white font-2xl">${product.retail_price.toFixed(2)}</span> 
       </p>
       <p className="text-gray-600">
-        Market Price<br/> <span className="text-white font-2xl">${product.marketPrice.toFixed(2)}</span>
+        Market Price<br/> <span className="text-white font-2xl">${product.market_price.toFixed(2)}</span>
       </p>
       </div>
     </div>

@@ -5,7 +5,9 @@ import ProductModal from './ProductModal';
 import ProductsNavbar from './ProductsNavbar';
 import ProductFilter from './ProductsFilter';
 import type { Product, Filters } from '../../types/productTypes';
+import { createClient } from '../../utils/supabase/client'; // Import the Supabase client
 
+const supabase = createClient(); // Initialize the Supabase client
 
 interface ProductFilterProps {
   onFilterChange: (filters: Filters) => void; // Ensure this matches
@@ -34,8 +36,12 @@ export default function ProductsList() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products');
-        const data = await response.json();
+        const { data, error } = await supabase
+          .from('products') // Replace with your actual table name
+          .select('*');
+
+        if (error) throw error; // Handle error if any
+
         setProducts(data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -46,6 +52,8 @@ export default function ProductsList() {
 
     fetchProducts();
   }, []);
+
+  console.log(products)
 
   if (loading) {
     return <div className="text-white">Loading...</div>;
