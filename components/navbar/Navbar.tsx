@@ -156,7 +156,7 @@ export default function Navbar() {
             aria-haspopup="true">
             {/* Profile Image */}
             <div className="relative">
-              tsx
+              
               <img
                 src={session?.user?.image ?? "/default-profile.png"}
                 alt="Profile"

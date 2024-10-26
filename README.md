@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Inventory Management System
+
+This is an Inventory Management System built with [Next.js](https://nextjs.org) and [Supabase](https://supabase.io). The application allows users to manage products, including adding, editing, and deleting product information. It provides a user-friendly interface for managing inventory data efficiently.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- **User Authentication**: Secure user authentication using Supabase.
+- **CRUD Operations**: Create, Read, Update, and Delete products in the inventory.
+- **Responsive Design**: Mobile-friendly interface for managing products.
+- **Real-time Updates**: Automatically updates the UI when changes are made to the database.
+- **Search and Filter**: Easily search and filter products based on various criteria.
+- **Error Handling**: Comprehensive error handling for user actions.
+
+## Technologies Used
+
+- **Frontend**: 
+  - [Next.js](https://nextjs.org) - A React framework for building server-side rendered applications.
+  - [React](https://reactjs.org) - A JavaScript library for building user interfaces.
+  - [Tailwind CSS](https://tailwindcss.com) - A utility-first CSS framework for styling.
+
+- **Backend**: 
+  - [Supabase](https://supabase.io) - An open-source Firebase alternative that provides a backend as a service.
+
+- **Database**: 
+  - PostgreSQL - A powerful, open-source relational database.
 
 ## Getting Started
 
-First, run the development server:
+To get started with the project, follow the instructions below.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/inventory-management-system.git
+   cd inventory-management-system
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. **Set up Supabase**:
+   - Create a new project on [Supabase](https://supabase.io).
+   - Set up your database schema according to the provided SQL scripts in the `supabase` folder.
+   - Obtain your Supabase URL and anon key.
 
-## Learn More
+4. **Configure environment variables**:
+   Create a `.env.local` file in the root of the project and add your Supabase credentials:
+   ```plaintext
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+### Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Run the development server**:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Open your browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Deploy on Vercel
+3. **Explore the features**:
+   - Log in or sign up to access the inventory management features.
+   - Add new products, edit existing ones, and delete products as needed.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## API Reference
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application interacts with the Supabase API for managing products. Below are the key endpoints used:
+
+- **GET /products**: Fetch all products.
+- **POST /products**: Create a new product.
+- **PUT /products/:id**: Update an existing product by ID.
+- **DELETE /products/:id**: Delete a product by ID.
+
+## Contributing
+
+Contributions are welcome! If you would like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to reach out if you have any questions or need further assistance!
