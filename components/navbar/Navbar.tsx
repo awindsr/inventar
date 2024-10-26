@@ -8,12 +8,12 @@ import {
   faGear,
   faBell,
   faBox,
-  faShoppingCart
+  faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import NavButton from "../ui/NavButton";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -27,7 +27,7 @@ export default function Navbar() {
   const navigationTabs = [
     { name: "Dashboard", path: "/dashboard", icon: faGauge },
     { name: "Inventory", path: "/dashboard/products", icon: faBox },
-    { name: "Orders", path: "/dashboard/orders", icon: faShoppingCart }
+    { name: "Orders", path: "/dashboard/orders", icon: faShoppingCart },
   ];
 
   const { data: session } = useSession();
@@ -37,10 +37,10 @@ export default function Navbar() {
   };
 
   const isActiveTab = (path: string) => {
-    if (path === '/dashboard' && pathname === '/dashboard') {
+    if (path === "/dashboard" && pathname === "/dashboard") {
       return true;
     }
-    if (path !== '/dashboard' && pathname.startsWith(path)) {
+    if (path !== "/dashboard" && pathname.startsWith(path)) {
       return true;
     }
     return false;
@@ -115,6 +115,7 @@ export default function Navbar() {
         {session?.user?.image && (
           <div className="relative" ref={notificationDropdownRef}>
             <button
+            type="button"
               onClick={() => setIsNotificationOpen(!isNotificationOpen)}
               className="notification-btn">
               <FontAwesomeIcon icon={faBell} />
@@ -130,11 +131,15 @@ export default function Navbar() {
                         key={notification.id}
                         className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                         <span>{notification.message}</span>
-                        <span className="text-xs text-gray-500">{notification.date}</span>
+                        <span className="text-xs text-gray-500">
+                          {notification.date}
+                        </span>
                       </div>
                     ))
                   ) : (
-                    <div className="px-4 py-2 text-sm text-gray-500">No notifications</div>
+                    <div className="px-4 py-2 text-sm text-gray-500">
+                      No notifications
+                    </div>
                   )}
                 </div>
               </div>
@@ -147,11 +152,13 @@ export default function Navbar() {
             onClick={() => setIsProfileOpen(!isProfileOpen)}
             className="relative flex items-center focus:outline-none group"
             aria-expanded={isProfileOpen}
+            type="button"
             aria-haspopup="true">
             {/* Profile Image */}
             <div className="relative">
+              tsx
               <img
-                src={session?.user?.image}
+                src={session?.user?.image ?? "/default-profile.png"}
                 alt="Profile"
                 className="h-9 w-9 rounded-full object-cover border-2 border-transparent group-hover:border-gray-500 transition-all duration-200"
               />
@@ -167,7 +174,7 @@ export default function Navbar() {
               <div className="px-4 py-3 border-b border-gray-100">
                 <div className="flex items-center space-x-3">
                   <img
-                    src={session?.user?.image}
+                    src={session?.user?.image ?? "/default-profile.png"}
                     alt="Profile"
                     className="h-10 w-10 rounded-full"
                   />
@@ -185,13 +192,15 @@ export default function Navbar() {
               {/* Menu Items */}
               <div className="py-1">
                 <button
+                type="button"
                   className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                  onClick={() => router.push('/dashboard/profile')}>
+                  onClick={() => router.push("/dashboard/profile")}>
                   <FontAwesomeIcon icon={faUser} className="mr-3 h-4 w-4" />
                   Your Profile
                 </button>
 
                 <button
+                type="button"
                   className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   onClick={() => setIsNotificationOpen(true)}>
                   <FontAwesomeIcon icon={faBell} className="mr-3 h-4 w-4" />
@@ -199,8 +208,9 @@ export default function Navbar() {
                 </button>
 
                 <button
+                type="button"
                   className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                  onClick={() => router.push('/dashboard/settings')}>
+                  onClick={() => router.push("/dashboard/settings")}>
                   <FontAwesomeIcon icon={faGear} className="mr-3 h-4 w-4" />
                   Settings
                 </button>
@@ -209,12 +219,10 @@ export default function Navbar() {
               {/* Sign Out Button */}
               <div className="py-1 border-t border-gray-100">
                 <button
+                type="button"
                   className="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                   onClick={() => signOut()}>
-                  <FontAwesomeIcon
-                    icon={faSignOut}
-                    className="mr-3 h-4 w-4"
-                  />
+                  <FontAwesomeIcon icon={faSignOut} className="mr-3 h-4 w-4" />
                   Sign out
                 </button>
               </div>

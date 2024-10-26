@@ -2,96 +2,29 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import ProductModal from './ProductModal';
-import ProductsNavbar from './ProductsNavbar'; // Import ProductsNavbar
-import ProductFilter from './ProductsFilter'; // Import ProductFilter
+import ProductsNavbar from './ProductsNavbar';
+import ProductFilter from './ProductsFilter';
+import type { Product, Filters } from '../../types/productTypes';
 
-// Define the Product interface
-interface Color {
-  name: string;
-  hex: string;
-  inStock: boolean;
+
+interface ProductFilterProps {
+  onFilterChange: (filters: Filters) => void; // Ensure this matches
+  onReset: () => void;
 }
 
-interface Feature {
-  name: string;
-  description: string;
-}
 
-interface Dimensions {
-  width: number;
-  height: number;
-  depth: number;
-  unit: string;
-}
-
-interface Variant {
-  id: string;
-  color?: string;
-  storage?: string;
-  price: number;
-  stockAvailable: number;
-}
-
-interface Product {
-  name: string;
-  marketPrice: number;
-  retailPrice: number;
-  stockAvailable: number;
-  images: string[];
-  supplierName: string;
-  productCode: string;
-  category: string;
-  subCategory: string;
-  specifications: {
-    brand?: string;
-    model?: string;
-    storage?: string;
-    ram?: string;
-    screenSize?: string;
-    colors: Color[];
-    warranty: string;
-    powerConsumption?: string;
-    dimensions?: Dimensions;
-    features?: Feature[];
-  };
-  details: {
-    description: string;
-    highlights: string[];
-    inBox: string[];
-  };
-  variants: Variant[];
-  reviews: {
-    averageRating: number;
-    totalReviews: number;
-  };
-  metadata: {
-    dateAdded: string;
-    lastUpdated: string;
-    tags: string[];
-  };
-}
-
-// Define the Filters interface
-interface Filters {
-  status: string;
-  productTypes: string[];
-  minPrice: string;
-  maxPrice: string;
-  selectedStock: string;
-  selectedCategory: string;
-}
 
 export default function ProductsList() {
-  const [products, setProducts] = useState<Product[]>([]); // State to hold products
-  const [loading, setLoading] = useState(true); // State to manage loading state
-  const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // State for selected product
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
-  const productsPerPage = 10; // Number of products to display per page
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const productsPerPage = 10;
 
   const [filters, setFilters] = useState<Filters>({
     status: 'All',
-    productTypes: [],
+    productTypes: [], // Let TypeScript infer the type from the Filters interface
     minPrice: '',
     maxPrice: '',
     selectedStock: 'All Stocks',
@@ -101,28 +34,29 @@ export default function ProductsList() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products'); // Fetch products from JSON server
+        const response = await fetch('http://localhost:3001/products');
         const data = await response.json();
-        setProducts(data); // Set products to state
+        setProducts(data);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false);
       }
     };
 
-    fetchProducts(); // Call the fetch function
+    fetchProducts();
   }, []);
 
   if (loading) {
-    return <div className="text-white">Loading...</div>; // Loading state
+    return <div className="text-white">Loading...</div>;
   }
 
-  // Filter products based on search query and filters
+  
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = filters.status === 'All' || product.status === filters.status;
-    const matchesType = filters.productTypes.length === 0 || filters.productTypes.includes(product.subCategory);
+    const matchesType = filters.productTypes.length === 0 || 
+      filters.productTypes.some(type => type.value === product.subCategory);
     const matchesStock = filters.selectedStock === 'All Stocks' || 
       (filters.selectedStock === 'Low Stock' && product.stockAvailable < 20) || 
       (filters.selectedStock === 'In Stock' && product.stockAvailable > 0) || 
@@ -134,24 +68,18 @@ export default function ProductsList() {
     return matchesSearch && matchesStatus && matchesType && matchesStock && matchesCategory && matchesMinPrice && matchesMaxPrice;
   });
 
-  // Calculate total pages
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-  // Slice products for the current page
   const startIndex = (currentPage - 1) * productsPerPage;
   const currentProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage);
 
-  // Handle page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  // Handle product click to open modal
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
   };
 
-  // Handle product update
   const handleUpdateProduct = (updatedProduct: Product) => {
     setProducts(prevProducts => 
       prevProducts.map(product => 
@@ -160,14 +88,16 @@ export default function ProductsList() {
     );
   };
 
-  const handleFilterChange = (newFilters: Partial<Filters>) => {
-    setFilters(prevFilters => ({ ...prevFilters, ...newFilters }));
+  // Use the imported Filters type
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    const handleFilterChange: (filters : any) => void = (filters) => {
+    setFilters(filters);
   };
 
   const handleResetFilters = () => {
     setFilters({
       status: 'All',
-      productTypes: [],
+      productTypes: [], 
       minPrice: '',
       maxPrice: '',
       selectedStock: 'All Stocks',
@@ -177,23 +107,28 @@ export default function ProductsList() {
 
   return (
     <div className='w-full min-h-screen rounded-lg flex gap-8'>
-      <ProductFilter onFilterChange={handleFilterChange} onReset={handleResetFilters} />
+    {/*@ts-ignore*/}
+     
+<ProductFilter 
+        onFilterChange={handleFilterChange}
+        onReset={handleResetFilters} 
+      />
       <div className='flex-1'>
-        <ProductsNavbar onSearch={setSearchQuery} productCount={products.length} /> {/* Pass product count */}
+        <ProductsNavbar onSearch={setSearchQuery} productCount={products.length} />
         <h2 className="text-white text-2xl mb-4">Products List</h2>
         <div className="flex flex-col w-full">
           {currentProducts.map(product => (
             <div key={product.productCode} onClick={() => handleProductClick(product)}>
-              <ProductCard product={product} /> {/* Render ProductCard for each product */}
+              <ProductCard product={product} />
             </div>
           ))}
         </div>
 
-        {/* Pagination Controls */}
         <div className="flex justify-center mt-4">
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index + 1}
+              type='button'
               onClick={() => handlePageChange(index + 1)}
               className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-300'}`}
             >
@@ -202,7 +137,6 @@ export default function ProductsList() {
           ))}
         </div>
 
-        {/* Product Modal */}
         {selectedProduct && (
           <ProductModal 
             product={selectedProduct} 

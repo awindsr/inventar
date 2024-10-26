@@ -1,75 +1,13 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { Tab } from "@headlessui/react";
+import type { Product, Color, Feature, Dimensions } from '../../types/productTypes';
 
-interface Color {
-  name: string;
-  hex: string;
-  inStock: boolean;
-}
-
-interface Feature {
-  name: string;
-  description: string;
-}
-
-interface Dimensions {
-  width: number;
-  height: number;
-  depth: number;
-  unit: string;
-}
-
-interface Variant {
-  id: string;
-  color?: string;
-  storage?: string;
-  price: number;
-  stockAvailable: number;
-}
-
-interface Product {
-  name: string;
-  marketPrice: number;
-  retailPrice: number;
-  stockAvailable: number;
-  images: string[];
-  supplierName: string;
-  productCode: string;
-  category: string;
-  subCategory: string;
-  specifications: {
-    brand?: string;
-    model?: string;
-    storage?: string;
-    ram?: string;
-    screenSize?: string;
-    colors: Color[];
-    warranty: string;
-    powerConsumption?: string;
-    dimensions?: Dimensions;
-    features?: Feature[];
-  };
-  details: {
-    description: string;
-    highlights: string[];
-    inBox: string[];
-  };
-  variants: Variant[];
-  reviews: {
-    averageRating: number;
-    totalReviews: number;
-  };
-  metadata: {
-    dateAdded: string;
-    lastUpdated: string;
-    tags: string[];
-  };
-}
 
 interface ProductModalProps {
   product: Product;
   onClose: () => void;
-  onUpdate: (updatedProduct: Product) => void; // Specify the type for updatedProduct
+  onUpdate: (updatedProduct: Product) => void; 
 }
 
 const ProductModal: React.FC<ProductModalProps> = ({
@@ -83,12 +21,34 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
   const [newImageUrl, setNewImageUrl] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setEditedProduct((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    // Check if the field is 'highlights' to handle it differently
+    if (name === "highlights") {
+      setEditedProduct((prev) => ({
+        ...prev,
+        details: {
+          ...prev.details,
+          highlights: value.split(",").map((highlight) => highlight.trim()), // Split and trim the highlights
+        },
+      }));
+    } else if (name === "inBox") {
+      setEditedProduct((prev) => ({
+        ...prev,
+        details: {
+          ...prev.details,
+          inBox: value.split(",").map((item) => item.trim()), // Split and trim the inBox items
+        },
+      }));
+    } else {
+      setEditedProduct((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -126,22 +86,23 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const StarRating = ({ rating }: { rating: number }) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
-    
+
     return (
       <div className="flex items-center text-yellow-400">
         {[...Array(5)].map((_, i) => (
+          // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
           <svg
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             key={i}
             className={`w-5 h-5 ${
               i < fullStars
-                ? 'text-yellow-400'
+                ? "text-yellow-400"
                 : i === fullStars && hasHalfStar
-                ? 'text-yellow-400'
-                : 'text-gray-300'
+                ? "text-yellow-400"
+                : "text-gray-300"
             }`}
             fill="currentColor"
-            viewBox="0 0 20 20"
-          >
+            viewBox="0 0 20 20">
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
           </svg>
         ))}
@@ -158,18 +119,29 @@ const ProductModal: React.FC<ProductModalProps> = ({
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">{product.name}</h2>
           <div className="flex gap-3">
-
             {isEditing ? (
               <>
-               
-                <button onClick={() => setIsEditing(false)} className="text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all px-2 py-1 rounded-lg">Cancel Edit</button>
+                <button
+                  onClick={() => setIsEditing(false)}
+                  className="text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all px-2 py-1 rounded-lg">
+                  Cancel Edit
+                </button>
               </>
             ) : (
-              <button onClick={() => setIsEditing(true)} className="text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all px-2 py-1 rounded-lg ">Edit</button>
+              <button
+              type="button"
+                onClick={() => setIsEditing(true)}
+                className="text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all px-2 py-1 rounded-lg ">
+                Edit
+              </button>
             )}
-             <button onClick={onClose} className="text-red-500 mr-4 border border-red-500 hover:bg-red-500 hover:text-white transition-all px-2 py-1 rounded-lg">Close</button>
+            <button
+            type="button"
+              onClick={onClose}
+              className="text-red-500 mr-4 border border-red-500 hover:bg-red-500 hover:text-white transition-all px-2 py-1 rounded-lg">
+              Close
+            </button>
           </div>
-         
         </div>
 
         {isEditing ? (
@@ -254,20 +226,24 @@ const ProductModal: React.FC<ProductModalProps> = ({
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Highlights (comma separated)</label>
+              <label className="block text-white">
+                Highlights (comma separated)
+              </label>
               <textarea
                 name="highlights"
-                value={editedProduct.details.highlights.join(', ')}
-                onChange={(e) => handleChange({ target: { name: 'highlights', value: e.target.value.split(', ') } })}
+                value={editedProduct.details.highlights.join(", ")} // Join the highlights for display
+                onChange={handleChange} // Use the modified handleChange
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">In The Box (comma separated)</label>
+              <label className="block text-white">
+                In The Box (comma separated)
+              </label>
               <textarea
                 name="inBox"
-                value={editedProduct.details.inBox.join(', ')}
-                onChange={(e) => handleChange({ target: { name: 'inBox', value: e.target.value.split(', ') } })}
+                value={editedProduct.details.inBox.join(", ")} // Join the inBox items for display
+                onChange={handleChange} // Use the modified handleChange
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
             </div>
@@ -342,40 +318,56 @@ const ProductModal: React.FC<ProductModalProps> = ({
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Dimensions (Width, Height, Depth, Unit)</label>
+              <label className="block text-white">
+                Dimensions (Width, Height, Depth, Unit)
+              </label>
               <input
                 type="text"
                 name="dimensions"
-                value={`${editedProduct.specifications.dimensions?.width || ''}, ${editedProduct.specifications.dimensions?.height || ''}, ${editedProduct.specifications.dimensions?.depth || ''}, ${editedProduct.specifications.dimensions?.unit || ''}`}
+                value={`${
+                  editedProduct.specifications.dimensions?.width || ""
+                }, ${editedProduct.specifications.dimensions?.height || ""}, ${
+                  editedProduct.specifications.dimensions?.depth || ""
+                }, ${editedProduct.specifications.dimensions?.unit || ""}`}
                 onChange={(e) => {
-                  const [width, height, depth, unit] = e.target.value.split(', ');
+                  const [width, height, depth, unit] =
+                    e.target.value.split(", ");
                   setEditedProduct((prev) => ({
                     ...prev,
                     specifications: {
                       ...prev.specifications,
-                      dimensions: { width: Number(width), height: Number(height), depth: Number(depth), unit }
-                    }
+                      dimensions: {
+                        width: Number(width),
+                        height: Number(height),
+                        depth: Number(depth),
+                        unit,
+                      },
+                    },
                   }));
                 }}
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Features (comma separated)</label>
+              <label className="block text-white">
+                Features (comma separated)
+              </label>
               <textarea
                 name="features"
-                value={editedProduct.specifications.features?.map(f => `${f.name}: ${f.description}`).join(', ')}
+                value={editedProduct.specifications.features
+                  ?.map((f) => `${f.name}: ${f.description}`)
+                  .join(", ")}
                 onChange={(e) => {
-                  const featuresArray = e.target.value.split(', ').map(f => {
-                    const [name, description] = f.split(': ');
+                  const featuresArray = e.target.value.split(", ").map((f) => {
+                    const [name, description] = f.split(": ");
                     return { name, description };
                   });
                   setEditedProduct((prev) => ({
                     ...prev,
                     specifications: {
                       ...prev.specifications,
-                      features: featuresArray
-                    }
+                      features: featuresArray,
+                    },
                   }));
                 }}
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
@@ -389,7 +381,12 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 onChange={(e) => setNewImageUrl(e.target.value)}
                 className="border rounded w-full p-2 bg-[#0f171a] border-gray-600"
               />
-              <button type="button" onClick={addImage} className="mt-2 bg-blue-500 text-white rounded px-4 py-2">Add Image</button>
+              <button
+                type="button"
+                onClick={addImage}
+                className="mt-2 bg-blue-500 text-white rounded px-4 py-2">
+                Add Image
+              </button>
             </div>
 
             <div className="mb-4">
@@ -399,8 +396,18 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   <li key={index} className="flex justify-between items-center">
                     <span>{image}</span>
                     <div>
-                      <button type="button" onClick={() => deleteImage(index)} className="text-red-500">Delete</button>
-                      <button type="button" onClick={() => updateImage(index)} className="text-blue-500 ml-2">Update</button>
+                      <button
+                        type="button"
+                        onClick={() => deleteImage(index)}
+                        className="text-red-500">
+                        Delete
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => updateImage(index)}
+                        className="text-blue-500 ml-2">
+                        Update
+                      </button>
                     </div>
                   </li>
                 ))}
@@ -408,8 +415,17 @@ const ProductModal: React.FC<ProductModalProps> = ({
             </div>
 
             <div className="flex justify-between">
-              <button type="button" onClick={onClose} className="bg-gray-300 rounded px-4 py-2">Cancel</button>
-              <button type="submit" className="bg-green-500 text-white rounded px-4 py-2">Save</button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="bg-gray-300 rounded px-4 py-2">
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="bg-green-500 text-white rounded px-4 py-2">
+                Save
+              </button>
             </div>
           </form>
         ) : (
@@ -433,7 +449,11 @@ const ProductModal: React.FC<ProductModalProps> = ({
                     src={image}
                     alt={`Thumbnail ${index + 1}`}
                     className={`w-20 h-20 object-cover cursor-pointer rounded-sm 
-                      ${selectedImageIndex === index ? 'border-2 border-blue-500' : 'border border-gray-600'}`}
+                      ${
+                        selectedImageIndex === index
+                          ? "border-2 border-blue-500"
+                          : "border border-gray-600"
+                      }`}
                     onClick={() => setSelectedImageIndex(index)}
                   />
                 ))}
@@ -441,19 +461,27 @@ const ProductModal: React.FC<ProductModalProps> = ({
 
               {/* Basic Information */}
               <div className="bg-[#1a282e] p-4 rounded-lg">
-                <h3 className="text-xl font-semibold text-white mb-4">Pricing & Availability</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">
+                  Pricing & Availability
+                </h3>
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-400">Market Price:</span>
-                    <span className="text-white">${product.marketPrice.toFixed(2)}</span>
+                    <span className="text-white">
+                      ${product.marketPrice.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Retail Price:</span>
-                    <span className="text-green-500 font-semibold">${product.retailPrice.toFixed(2)}</span>
+                    <span className="text-green-500 font-semibold">
+                      ${product.retailPrice.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Stock Available:</span>
-                    <span className="text-white">{product.stockAvailable} units</span>
+                    <span className="text-white">
+                      {product.stockAvailable} units
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Supplier:</span>
@@ -473,20 +501,53 @@ const ProductModal: React.FC<ProductModalProps> = ({
               {/* Tabs for Different Sections */}
               <Tab.Group>
                 <Tab.List className="flex space-x-1 bg-[#1a282e] p-1 rounded-lg">
-                  <Tab className={({ selected }) => `w-full py-2 text-sm font-medium text-center rounded-lg ${selected ? 'bg-blue-500 text-white' : 'text-gray-400 hover:bg-gray-700'}`}>Description</Tab>
-                  <Tab className={({ selected }) => `w-full py-2 text-sm font-medium text-center rounded-lg ${selected ? 'bg-blue-500 text-white' : 'text-gray-400 hover:bg-gray-700'}`}>Specifications</Tab>
-                  <Tab className={({ selected }) => `w-full py-2 text-sm font-medium text-center rounded-lg ${selected ? 'bg-blue-500 text-white' : 'text-gray-400 hover:bg-gray-700'}`}>Variants</Tab>
+                  <Tab
+                    className={({ selected }) =>
+                      `w-full py-2 text-sm font-medium text-center rounded-lg ${
+                        selected
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-400 hover:bg-gray-700"
+                      }`
+                    }>
+                    Description
+                  </Tab>
+                  <Tab
+                    className={({ selected }) =>
+                      `w-full py-2 text-sm font-medium text-center rounded-lg ${
+                        selected
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-400 hover:bg-gray-700"
+                      }`
+                    }>
+                    Specifications
+                  </Tab>
+                  <Tab
+                    className={({ selected }) =>
+                      `w-full py-2 text-sm font-medium text-center rounded-lg ${
+                        selected
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-400 hover:bg-gray-700"
+                      }`
+                    }>
+                    Variants
+                  </Tab>
                 </Tab.List>
 
                 <Tab.Panels className="mt-4">
                   {/* Description Panel */}
                   <Tab.Panel className="bg-[#1a282e] p-4 rounded-lg">
                     <div>
-                      <h4 className="text-white font-semibold mb-2">Description</h4>
-                      <p className="text-gray-400">{product.details.description}</p>
+                      <h4 className="text-white font-semibold mb-2">
+                        Description
+                      </h4>
+                      <p className="text-gray-400">
+                        {product.details.description}
+                      </p>
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold mb-2">Highlights</h4>
+                      <h4 className="text-white font-semibold mb-2">
+                        Highlights
+                      </h4>
                       <ul className="list-disc list-inside text-gray-400">
                         {product.details.highlights.map((highlight, index) => (
                           <li key={index}>{highlight}</li>
@@ -494,7 +555,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold mb-2">In The Box</h4>
+                      <h4 className="text-white font-semibold mb-2">
+                        In The Box
+                      </h4>
                       <ul className="list-disc list-inside text-gray-400">
                         {product.details.inBox.map((item, index) => (
                           <li key={index}>{item}</li>
@@ -506,66 +569,101 @@ const ProductModal: React.FC<ProductModalProps> = ({
                   {/* Specifications Panel */}
                   <Tab.Panel className="bg-[#1a282e] p-4 rounded-lg">
                     <div className="space-y-4">
-                      {Object.entries(product.specifications).map(([key, value]) => {
-                        if (key === 'colors') {
-                          return (
-                            <div key={key}>
-                              <h4 className="text-white font-semibold mb-2">Colors</h4>
-                              <div className="flex gap-2">
-                                {value.map((color: Color) => (
-                                  <div
-                                    key={color.name}
-                                    className="flex items-center gap-2 bg-[#243238] p-2 rounded-lg"
-                                  >
-                                    <div
-                                      className="w-4 h-4 rounded-full"
-                                      style={{ backgroundColor: color.hex }}
-                                    />
-                                    <span className="text-gray-400">{color.name}</span>
-                                    <span className={color.inStock ? 'text-green-500' : 'text-red-500'}>
-                                      {color.inStock ? '✓' : '×'}
-                                    </span>
-                                  </div>
-                                ))}
+                      {Object.entries(product.specifications).map(
+                        ([key, value]) => {
+                          // Handle colors
+                          if (key === "colors" && Array.isArray(value)) {
+                            return (
+                              <div key={key}>
+                                <h4 className="text-white font-semibold mb-2">
+                                  Colors
+                                </h4>
+                                <div className="flex gap-2">
+                                  {value.map((color) => {
+                                    const colorValue = color as Color; // Type assertion to Color
+                                    return (
+                                      <div
+                                        key={colorValue.name}
+                                        className="flex items-center gap-2 bg-[#243238] p-2 rounded-lg">
+                                        <div
+                                          className="w-4 h-4 rounded-full"
+                                          style={{
+                                            backgroundColor: colorValue.hex,
+                                          }}
+                                        />
+                                        <span className="text-gray-400">
+                                          {colorValue.name}
+                                        </span>
+                                        <span
+                                          className={
+                                            colorValue.inStock
+                                              ? "text-green-500"
+                                              : "text-red-500"
+                                          }>
+                                          {colorValue.inStock ? "✓" : "×"}
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
                               </div>
-                            </div>
-                          );
-                        }
-                        if (key === 'dimensions') {
-                          const dim = value as Dimensions;
-                          return (
-                            <div key={key}>
-                              <h4 className="text-white font-semibold mb-2">Dimensions</h4>
-                              <p className="text-gray-400">
-                                {`${dim.width}${dim.unit} × ${dim.height}${dim.unit} × ${dim.depth}${dim.unit}`}
-                              </p>
-                            </div>
-                          );
-                        }
-                        if (key === 'features') {
-                          return (
-                            <div key={key}>
-                              <h4 className="text-white font-semibold mb-2">Features</h4>
-                              <div className="space-y-2">
-                                {(value as Feature[]).map((feature) => (
-                                  <div key={feature.name} className="bg-[#243238] p-2 rounded-lg">
-                                    <h5 className="text-white">{feature.name}</h5>
-                                    <p className="text-gray-400">{feature.description}</p>
-                                  </div>
-                                ))}
+                            );
+                          }
+
+                          // Handle features
+                          if (key === "features" && Array.isArray(value)) {
+                            return (
+                              <div key={key}>
+                                <h4 className="text-white font-semibold mb-2">
+                                  Features
+                                </h4>
+                                <div className="space-y-2">
+                                  {value.map((feature) => {
+                                    const featureValue = feature as Feature; // Type assertion to Feature
+                                    return (
+                                      <div
+                                        key={featureValue.name}
+                                        className="bg-[#243238] p-2 rounded-lg">
+                                        <h5 className="text-white">
+                                          {featureValue.name}
+                                        </h5>
+                                        <p className="text-gray-400">
+                                          {featureValue.description}
+                                        </p>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
                               </div>
+                            );
+                          }
+
+                          // Handle other keys...
+                          if (key === "dimensions") {
+                            const dim = value as Dimensions; // Assuming value is Dimensions
+                            return (
+                              <div key={key}>
+                                <h4 className="text-white font-semibold mb-2">
+                                  Dimensions
+                                </h4>
+                                <p className="text-gray-400">
+                                  {`${dim.width}${dim.unit} × ${dim.height}${dim.unit} × ${dim.depth}${dim.unit}`}
+                                </p>
+                              </div>
+                            );
+                          }
+                          return (
+                            <div key={key} className="flex justify-between">
+                              <span className="text-gray-400">
+                                {key.charAt(0).toUpperCase() + key.slice(1)}:
+                              </span>
+                              <span className="text-white">
+                                {value as string}
+                              </span>
                             </div>
                           );
                         }
-                        return (
-                          <div key={key} className="flex justify-between">
-                            <span className="text-gray-400">
-                              {key.charAt(0).toUpperCase() + key.slice(1)}:
-                            </span>
-                            <span className="text-white">{value as string}</span>
-                          </div>
-                        );
-                      })}
+                      )}
                     </div>
                   </Tab.Panel>
 
@@ -577,11 +675,10 @@ const ProductModal: React.FC<ProductModalProps> = ({
                           key={variant.id}
                           className={`p-4 rounded-lg cursor-pointer ${
                             selectedVariant.id === variant.id
-                              ? 'bg-blue-500'
-                              : 'bg-[#243238] hover:bg-[#2a3b42]'
+                              ? "bg-blue-500"
+                              : "bg-[#243238] hover:bg-[#2a3b42]"
                           }`}
-                          onClick={() => setSelectedVariant(variant)}
-                        >
+                          onClick={() => setSelectedVariant(variant)}>
                           <div className="flex justify-between items-center">
                             <div>
                               <h4 className="text-white font-semibold">
