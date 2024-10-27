@@ -1,6 +1,6 @@
 # Inventory Management System
+![inventar](https://socialify.git.ci/awindsr/inventar/image?description=1&descriptionEditable=%20Inventory%20Management%20System%20built%20with%20Next.js%20to%20manage%20products%2C%20including%20adding%2C%20editing%2C%20and%20deleting%20product%20information.&font=Raleway&language=1&name=1&owner=1&pattern=Plus&theme=Dark)
 
-This is an Inventory Management System built with [Next.js](https://nextjs.org) and [Supabase](https://supabase.io). The application allows users to manage products, including adding, editing, and deleting product information. It provides a user-friendly interface for managing inventory data efficiently.
 
 ## Table of Contents
 
