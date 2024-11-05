@@ -15,7 +15,9 @@ export default function Home() {
   }, [status, router]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return  <div className="min-h-screen flex items-center justify-center bg-custom-gradient">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+  </div>
   }
 
   return (

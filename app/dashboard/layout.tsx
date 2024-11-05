@@ -22,9 +22,9 @@ export default function DashboardLayout({
 
   if (status === "loading") {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-custom-gradient">
-        <div className="text-lg">Loading...</div>
-      </div>
+      <div className="min-h-screen flex items-center justify-center bg-custom-gradient">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+    </div>
     );
   }
 
