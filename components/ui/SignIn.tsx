@@ -2,8 +2,6 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { FcGoogle } from 'react-icons/fc';
 
-
-
 export function SignIn() {
   const router = useRouter();
   const { data: session } = useSession();
