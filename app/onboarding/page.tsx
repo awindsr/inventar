@@ -36,6 +36,7 @@ export default function Onboarding() {
   }, [session, router]);
 
 
+  
   useEffect(() => {
     const fetchOrganizations = async () => {
       try {
