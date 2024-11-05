@@ -32,6 +32,7 @@ export interface Color {
     market_price: number;
     retail_price: number;
     stockAvailable: number;
+    stock_available: number; 
     supplierName: string;
     productCode: string;
     category: string;

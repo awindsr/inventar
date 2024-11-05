@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
+import AddProductModal from "./AddProductModal"; // Import the modal component
+import { Product } from "@/types/productTypes";
 
 interface ProductsNavbarProps {
   onSearch: (query: string) => void; // Prop to handle search
@@ -10,10 +12,16 @@ interface ProductsNavbarProps {
 
 export default function ProductsNavbar({ onSearch, productCount }: ProductsNavbarProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     onSearch(e.target.value); // Call the onSearch prop with the current query
+  };
+
+  const handleAddProduct = (product: Product) => {
+    // Handle adding the product (e.g., send to API or update state)
+    console.log("Product added:", product);
   };
 
   return (
@@ -37,10 +45,21 @@ export default function ProductsNavbar({ onSearch, productCount }: ProductsNavba
           </span>
         </div>
       </div>
-      <button className="flex items-center bg-primary text-black font-semibold px-4 py-2 rounded-lg justify-center transition duration-200">
+      <button
+        className="flex items-center bg-primary text-black font-semibold px-4 py-2 rounded-lg justify-center transition duration-200"
+        onClick={() => setIsModalOpen(true)} // Open modal on click
+      >
         <FontAwesomeIcon icon={faPlus} className="mr-2" />
         Add Product
       </button>
+      <div className="absolute z-99 ">
+
+      <AddProductModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)} // Close modal
+        onAddProduct={handleAddProduct} // Handle product addition
+      />
+      </div>
     </div>
   );
 }

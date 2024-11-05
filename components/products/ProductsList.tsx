@@ -1,80 +1,49 @@
-"use client"
-import React, { useEffect, useState } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import ProductModal from './ProductModal';
 import ProductsNavbar from './ProductsNavbar';
 import ProductFilter from './ProductsFilter';
 import type { Product, Filters } from '../../types/productTypes';
-import { createClient } from '../../utils/supabase/client'; // Import the Supabase client
-
-const supabase = createClient(); // Initialize the Supabase client
+import { useSession } from 'next-auth/react';
+import useFetchProducts from '../../app/api/products/useFetchProducts';
+import useFilterProducts from '../../app/api/products/filterProducts';
 
 interface ProductFilterProps {
-  onFilterChange: (filters: Filters) => void; // Ensure this matches
+  onFilterChange: (filters: Filters) => void;
   onReset: () => void;
 }
 
-
-
 export default function ProductsList() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const productsPerPage = 10;
 
+  const { data: session } = useSession();
+  const userEmail = session?.user?.email;
+
+  // Use the custom hook to fetch products
+  const { products, loading, error, refetch } = useFetchProducts(userEmail || '');
+
   const [filters, setFilters] = useState<Filters>({
     status: 'All',
-    productTypes: [], // Let TypeScript infer the type from the Filters interface
+    productTypes: [],
     minPrice: '',
     maxPrice: '',
     selectedStock: 'All Stocks',
     selectedCategory: 'All Products',
   });
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('products') // Replace with your actual table name
-          .select('*');
-
-        if (error) throw error; // Handle error if any
-
-        setProducts(data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  console.log(products)
+  const filteredProducts = useFilterProducts({ products, searchQuery, filters });
 
   if (loading) {
     return <div className="text-white">Loading...</div>;
   }
 
-  
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = filters.status === 'All' || product.status === filters.status;
-    const matchesType = filters.productTypes.length === 0 || 
-      filters.productTypes.some(type => type.value === product.subCategory);
-    const matchesStock = filters.selectedStock === 'All Stocks' || 
-      (filters.selectedStock === 'Low Stock' && product.stockAvailable < 20) || 
-      (filters.selectedStock === 'In Stock' && product.stockAvailable > 0) || 
-      (filters.selectedStock === 'High Stock' && product.stockAvailable > 100);
-    const matchesCategory = filters.selectedCategory === 'All Products' || product.category === filters.selectedCategory;
-    const matchesMinPrice = filters.minPrice === '' || product.retail_price >= parseFloat(filters.minPrice);
-    const matchesMaxPrice = filters.maxPrice === '' || product.retail_price <= parseFloat(filters.maxPrice);
-
-    return matchesSearch && matchesStatus && matchesType && matchesStock && matchesCategory && matchesMinPrice && matchesMaxPrice;
-  });
+  if (error) {
+    return <div className="text-red-500">Error: {error}</div>;
+  }
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
@@ -88,17 +57,13 @@ export default function ProductsList() {
     setSelectedProduct(product);
   };
 
-  const handleUpdateProduct = (updatedProduct: Product) => {
-    setProducts(prevProducts => 
-      prevProducts.map(product => 
-        product.productCode === updatedProduct.productCode ? updatedProduct : product
-      )
-    );
+  // Handle updating a product without modifying other state during rendering
+  const handleUpdateProduct = (updatedProduct) => {
+    setSelectedProduct(null);
+    refetch(); // Triggers a fresh fetch after product update
   };
 
-  // Use the imported Filters type
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const handleFilterChange: (filters : any) => void = (filters) => {
+  const handleFilterChange = (filters: Filters) => {
     setFilters(filters);
   };
 
@@ -115,14 +80,12 @@ export default function ProductsList() {
 
   return (
     <div className='w-full min-h-screen rounded-lg flex gap-8'>
-    {/*@ts-ignore*/}
-     
-<ProductFilter 
+      {/* <ProductFilter 
         onFilterChange={handleFilterChange}
         onReset={handleResetFilters} 
-      />
+      /> */}
       <div className='flex-1'>
-        <ProductsNavbar onSearch={setSearchQuery} productCount={products.length} />
+        <ProductsNavbar onSearch={setSearchQuery} productCount={filteredProducts.length} />
         <h2 className="text-white text-2xl mb-4">Products List</h2>
         <div className="flex flex-col w-full">
           {currentProducts.map(product => (

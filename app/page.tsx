@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { SignIn } from "@/components/ui/SignIn";
+import {SignIn}  from "@/components/ui/SignIn";
 
 export default function Home() {
   const {  status } = useSession();

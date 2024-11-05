@@ -27,7 +27,7 @@ export default function Navbar() {
   const navigationTabs = [
     { name: "Dashboard", path: "/dashboard", icon: faGauge },
     { name: "Inventory", path: "/dashboard/products", icon: faBox },
-    { name: "Orders", path: "/dashboard/orders", icon: faShoppingCart },
+    // { name: "Orders", path: "/dashboard/orders", icon: faShoppingCart },
   ];
 
   const { data: session } = useSession();
