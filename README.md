@@ -82,15 +82,6 @@ To get started with the project, follow the instructions below.
    - Log in or sign up to access the inventory management features.
    - Add new products, edit existing ones, and delete products as needed.
 
-## API Reference
-
-The application interacts with the Supabase API for managing products. Below are the key endpoints used:
-
-- **GET /products**: Fetch all products.
-- **POST /products**: Create a new product.
-- **PUT /products/:id**: Update an existing product by ID.
-- **DELETE /products/:id**: Delete a product by ID.
-
 ## Contributing
 
 Contributions are welcome! If you would like to contribute to this project, please follow these steps:
