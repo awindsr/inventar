@@ -35,6 +35,7 @@ export interface Color {
     stock_available: number; 
     supplierName: string;
     productCode: string;
+    product_code: string;
     category: string;
     image: string; 
     images: string[]; 

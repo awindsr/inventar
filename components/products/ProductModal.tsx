@@ -242,7 +242,7 @@ console.log(Image)
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Description</label>
+              <label htmlFor="description" className="block text-white">Description</label>
               <textarea
                 name="description"
                 value={editedProduct.details.description}
@@ -251,7 +251,7 @@ console.log(Image)
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">
+              <label htmlFor="highlights" className="block text-white">
                 Highlights (comma separated)
               </label>
               <textarea
@@ -262,10 +262,11 @@ console.log(Image)
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">
+              <label htmlFor="inBox" className="block text-white">
                 In The Box (comma separated)
               </label>
               <textarea
+                id="inBox"
                 name="inBox"
                 value={editedProduct.details.inBox.join(", ")} // Join the inBox items for display
                 onChange={handleChange} // Use the modified handleChange

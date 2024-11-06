@@ -1,14 +1,42 @@
 // components/products/ProductCard.tsx
 import type React from "react";
 import type { Product } from '../../types/productTypes';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDeleteLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
+import useDeleteProduct from "@/app/api/products/useDeleteProduct";
+
+const { deleteProduct } = useDeleteProduct();
+
 
 
 
 interface ProductCardProps {
   product: Product;
+  refetch: () => void;
+ 
+  
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+
+const ProductCard: React.FC<ProductCardProps> = ({ product, refetch}) => {
+
+  const handleDeleteClick = async (
+    productCode: string,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation(); // Prevents the parent component's onClick from being triggered
+    console.log(`Attempting to delete product with code: ${productCode}`);
+    
+    try {
+      await deleteProduct(product.product_code);
+      console.log(`Deleted product with code: ${product.product_code}`);
+      refetch();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert("Failed to delete product. Please try again."); // Optional user feedback
+    }
+  };
+
   // Determine stock status
   let stockStatus = "On Stock";
   if (product.stockAvailable < 20) {
@@ -44,7 +72,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="flex space-x-8">
+      <div className="flex space-x-8 justify-start">
+        
 
       <p className="text-gray-600 ">
         Retail Price<br/><span className="text-white font-2xl">${product.retail_price.toFixed(2)}</span> 
@@ -52,6 +81,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <p className="text-gray-600">
         Market Price<br/> <span className="text-white font-2xl">${product.market_price.toFixed(2)}</span>
       </p>
+      <button type="button" className="px-4 py-2 text-red-500" onClick={(e) => handleDeleteClick(product.productCode, e)}>
+              <FontAwesomeIcon icon={faTrash} />
+      </button>
       </div>
     </div>
   );

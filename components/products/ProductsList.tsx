@@ -14,6 +14,12 @@ interface ProductFilterProps {
   onReset: () => void;
 }
 
+
+interface ProductCardProps {
+  product: Product;
+  handleDelete: () => void;
+}
+
 export default function ProductsList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -48,6 +54,7 @@ export default function ProductsList() {
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
   const currentProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage);
+ 
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -78,6 +85,7 @@ export default function ProductsList() {
     });
   };
 
+
   return (
     <div className='w-full min-h-screen rounded-lg flex gap-8'>
       {/* <ProductFilter 
@@ -89,7 +97,7 @@ export default function ProductsList() {
         <h2 className="text-white text-2xl mb-4">Products List</h2>
         <div className="flex flex-col w-full">
           {currentProducts.map(product => (
-            <div key={product.productCode} onClick={() => handleProductClick(product)}>
+          <div key={product.productCode} onClick={() => handleProductClick(product)} refetch={refetch}>
               <ProductCard product={product} />
             </div>
           ))}
