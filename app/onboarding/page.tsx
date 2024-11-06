@@ -4,19 +4,16 @@ import { useRouter } from "next/navigation";
 import { createClient } from '../../utils/supabase/client';
 import { useSession } from "next-auth/react";
 
-
-
 interface Organization {
   id: string;
   name: string;
 }
 
-
 export default function Onboarding() {
   const [organizationId, setOrganizationId] = useState<string>("");
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [mobileNumber, setMobileNumber] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Set loading to true initially
   const [error, setError] = useState<string | null>(null);
   
   const router = useRouter();
@@ -29,14 +26,17 @@ export default function Onboarding() {
   const supabase = createClient();
 
   useEffect(() => {
-    // Redirect to dashboard if user already has an organization
-    if (session?.user?.organizationId) {
-      router.push('/dashboard');
+    if (status === "authenticated") {
+      if (session?.user?.organizationId) {
+        // Redirect immediately if organizationId is found
+        router.push('/dashboard');
+      } else {
+        // Organization ID not found, display onboarding form
+        setLoading(false);
+      }
     }
-  }, [session, router]);
+  }, [status, session, router]);
 
-
-  
   useEffect(() => {
     const fetchOrganizations = async () => {
       try {
@@ -76,7 +76,8 @@ export default function Onboarding() {
           updated_at: new Date().toISOString()
         })
         .eq('email', session.user.email);
-      if(status===204){
+
+      if (status === 204) {
         router.push('/dashboard');
         return;
       }
@@ -95,7 +96,7 @@ export default function Onboarding() {
     }
   };
 
-  if (status === "loading") {
+  if (loading || status === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
