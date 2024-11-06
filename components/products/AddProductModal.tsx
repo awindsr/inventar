@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Product } from "@/types/productTypes";
+import type React from "react";
+import { useState } from "react";
+import type { Product } from "@/types/productTypes";
+
 import { createClient } from "@/utils/supabase/client"; // Adjust the import based on your project structure
 
 interface AddProductModalProps {
@@ -20,6 +22,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ isOpen, onClose, onAd
     stock_available: 0,
     supplierName: "",
     productCode: "",
+    product_code: "",
     category: "",
     image: "",
     images: [],

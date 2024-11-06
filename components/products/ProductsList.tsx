@@ -97,8 +97,8 @@ export default function ProductsList() {
         <h2 className="text-white text-2xl mb-4">Products List</h2>
         <div className="flex flex-col w-full">
           {currentProducts.map(product => (
-          <div key={product.productCode} onClick={() => handleProductClick(product)} refetch={refetch}>
-              <ProductCard product={product} />
+          <div key={product.productCode} onClick={() => handleProductClick(product)}>
+              <ProductCard product={product} refetch={refetch} />
             </div>
           ))}
         </div>

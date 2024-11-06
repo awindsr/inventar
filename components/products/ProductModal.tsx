@@ -314,8 +314,9 @@ console.log(Image)
               />
             </div>
             <div className="mb-4">
-              <label className="block text-white">Screen Size</label>
+              <label htmlFor="screenSize" className="block text-white">Screen Size</label>
               <input
+                id="screenSize"
                 type="text"
                 name="screenSize"
                 value={editedProduct.specifications.screenSize}

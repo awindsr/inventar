@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeleteLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
 import useDeleteProduct from "@/app/api/products/useDeleteProduct";
 
-const { deleteProduct } = useDeleteProduct();
 
 
 
@@ -19,6 +18,7 @@ interface ProductCardProps {
 
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, refetch}) => {
+  const { deleteProduct } = useDeleteProduct();
 
   const handleDeleteClick = async (
     productCode: string,
